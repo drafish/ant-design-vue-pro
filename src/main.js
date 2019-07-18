@@ -39,8 +39,6 @@ import {
 import Authorized from "./components/Authorized";
 import Auth from "./directives/auth";
 import "highlight.js/styles/github.css";
-import ref from "vue-ref";
-Vue.use(ref, { name: "ant-ref" });
 
 // FormItem中的decoratorOption方法有bug，已提交pr到ant-design-vue
 // 47行到73行为临时解决方案

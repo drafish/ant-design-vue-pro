@@ -47,10 +47,7 @@ module.exports = {
   },
   devServer: {
     open: true,
-    // 解析body，对接真实服务端环境需要注释掉
     before: function(app) {
-      // var bodyParser = require("body-parser");
-      // app.use(bodyParser.json());
       if (process.env.MOCK !== "none") {
         app.use(createMockMiddleware());
       }
@@ -58,23 +55,6 @@ module.exports = {
     proxy: {
       "/api": {
         target: "http://localhost:3000"
-        // bypass: function(req, res) {
-        //   if (req.headers.accept.indexOf("html") !== -1) {
-        //     console.log("Skipping proxy for browser request.");
-        //     return "/index.html";
-        //   } else if (process.env.MOCK !== "none") {
-        //     console.log(req.path);
-        //     const name = req.path
-        //       .split("/api/")[1]
-        //       .split("/")
-        //       .join("_");
-        //     const mock = require(`./mock/${name}`);
-        //     const result = mock(req);
-        //     delete require.cache[require.resolve(`./mock/${name}`)];
-        //     return res.send(result);
-        //   }
-        //   return false;
-        // }
       }
     }
   }
