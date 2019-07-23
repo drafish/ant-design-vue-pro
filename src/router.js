@@ -170,6 +170,28 @@ const router = new Router({
               meta: { title: "高级详情页" }
             }
           ]
+        },
+        {
+          path: "/result",
+          name: "results",
+          component: { render: h => h("router-view") },
+          meta: { title: "结果页", icon: "check-circle-o" },
+          children: [
+            {
+              path: "/result/success",
+              name: "success",
+              component: () =>
+                import(/* webpackChunkName: "result" */ "@/views/Result/Success"),
+              meta: { title: "成功页" }
+            },
+            {
+              path: "/result/error",
+              name: "error",
+              component: () =>
+                import(/* webpackChunkName: "result" */ "@/views/Result/Error"),
+              meta: { title: "失败页" }
+            }
+          ]
         }
       ]
     },

@@ -1,10 +1,16 @@
-<script>
-import Result from "@/components/Result";
-
-export default {
-  render() {
-    const account = this.$route.params.account;
-    const actions = (
+<template>
+  <Result
+    className="registerResult"
+    type="success"
+    description="激活邮件已发送到你的邮箱中，邮件有效期为24小时。请及时登录邮箱，点击邮件中的链接激活帐户。"
+    style="margin-top: 56px"
+  >
+    <template slot="title">
+      <div class="title">
+        你的账户：{{ account || "AntDesign@example.com" }} 注册成功
+      </div>
+    </template>
+    <template slot="actions">
       <div class="actions">
         <a href="">
           <a-button size="large" type="primary">
@@ -15,22 +21,21 @@ export default {
           <a-button size="large">返回首页</a-button>
         </router-link>
       </div>
-    );
+    </template>
+  </Result>
+</template>
 
-    return (
-      <Result
-        className="registerResult"
-        type="success"
-        title={
-          <div class="title">
-            你的账户：{account || "AntDesign@example.com"} 注册成功
-          </div>
-        }
-        description="激活邮件已发送到你的邮箱中，邮件有效期为24小时。请及时登录邮箱，点击邮件中的链接激活帐户。"
-        actions={actions}
-        style={{ marginTop: 56 }}
-      />
-    );
+<script>
+import Result from "@/components/Result";
+
+export default {
+  components: {
+    Result
+  },
+  computed: {
+    account() {
+      return this.$route.params.account;
+    }
   }
 };
 </script>

@@ -1,28 +1,38 @@
 <script>
+import classNames from "classnames";
 import { Icon } from "ant-design-vue";
 
 export default {
-  functional: true,
-  render(h, ctx) {
-    const {
-      className,
-      type,
-      title,
-      description,
-      extra,
-      actions,
-      ...restProps
-    } = ctx.props;
+  props: {
+    className: String,
+    type: String,
+    title: String,
+    description: String
+  },
+  render() {
+    const { className, type } = this.$props;
+
+    let { title, description } = this.$props;
+
+    const { extra, actions } = this.$slots;
+
+    if (this.$slots.title) {
+      title = this.$slots.title;
+    }
+
+    if (this.$slots.description) {
+      description = this.$slots.description;
+    }
 
     const iconMap = {
       error: <Icon class="error" type="close-circle" theme="filled" />,
       success: <Icon class="success" type="check-circle" theme="filled" />
     };
 
-    const props = { props: { ...restProps } };
+    const clsString = classNames("result", className);
 
     return (
-      <div class={`result ${className}`} {...props}>
+      <div class={clsString}>
         <div class="icon">{iconMap[type]}</div>
         <div class="title">{title}</div>
         {description && <div class="description">{description}</div>}

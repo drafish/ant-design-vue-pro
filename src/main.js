@@ -34,6 +34,8 @@ import {
   Popover,
   Progress,
   Alert,
+  Card,
+  Steps,
   message
 } from "ant-design-vue";
 import Authorized from "./components/Authorized";
@@ -91,6 +93,8 @@ Vue.use(Row);
 Vue.use(Popover);
 Vue.use(Progress);
 Vue.use(Alert);
+Vue.use(Card);
+Vue.use(Steps);
 Vue.prototype.$message = message;
 
 const i18n = new VueI18n({
