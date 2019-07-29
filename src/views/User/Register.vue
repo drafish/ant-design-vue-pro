@@ -1,22 +1,22 @@
 <template>
   <div class="main">
-    <h3>注册</h3>
+    <h3>{{ $t("app.register.register") }}</h3>
     <a-form :form="form" @submit="handleSubmit">
       <a-form-item>
         <a-input
           size="large"
-          placeholder="邮箱"
+          :placeholder="$t('form.email.placeholder')"
           v-decorator="[
             'mail',
             {
               rules: [
                 {
                   required: true,
-                  message: '请输入邮箱地址！'
+                  message: $t('validation.email.required')
                 },
                 {
                   type: 'email',
-                  message: '邮箱地址格式错误！'
+                  message: $t('validation.email.wrong-format')
                 }
               ]
             }
@@ -34,14 +34,14 @@
               <VNodes :vnodes="passwordStatusMap()" />
               <VNodes :vnodes="renderPasswordProgress()" />
               <div style="margin-top: 10">
-                请至少输入 6 个字符。请不要使用容易被猜到的密码。
+                {{ $t("validation.password.strength.msg") }}
               </div>
             </div>
           </template>
           <a-input
             type="password"
             size="large"
-            placeholder="至少6位密码，区分大小写"
+            :placeholder="$t('form.password.placeholder')"
             v-decorator="[
               'password',
               {
@@ -55,14 +55,14 @@
         <a-input
           type="password"
           size="large"
-          placeholder="确认密码"
+          :placeholder="$t('form.confirm-password.placeholder')"
           v-decorator="[
             'confirm',
             {
               rules: [
                 {
                   required: true,
-                  message: '请确认密码！'
+                  message: $t('validation.confirm-password.required')
                 },
                 {
                   validator: this.checkConfirm
@@ -86,18 +86,18 @@
           <a-input
             size="large"
             style="width: 80%"
-            placeholder="手机号"
+            :placeholder="$t('form.phone-number.placeholder')"
             v-decorator="[
               'mobile',
               {
                 rules: [
                   {
                     required: true,
-                    message: '请输入手机号！'
+                    message: $t('validation.phone-number.required')
                   },
                   {
                     pattern: /^\d{11}$/,
-                    message: '手机号格式错误！'
+                    message: $t('validation.phone-number.wrong-format')
                   }
                 ]
               }
@@ -111,14 +111,14 @@
             <a-input
               size="large"
               type="Captcha"
-              placeholder="验证码"
+              :placeholder="$t('form.verification-code.placeholder')"
               v-decorator="[
                 'captcha',
                 {
                   rules: [
                     {
                       required: true,
-                      message: '请输入验证码！'
+                      message: $t('validation.verification-code.required')
                     }
                   ]
                 }
@@ -131,7 +131,9 @@
               size="large"
               @click="onGetCaptcha"
               :disabled="!!count"
-              >{{ count ? `${count} 秒` : "获取验证码" }}</a-button
+              >{{
+                count ? `${count} s` : $t("app.register.get-verification-code")
+              }}</a-button
             >
           </a-col>
         </a-row>
@@ -143,10 +145,10 @@
           type="primary"
           htmlType="submit"
           :loading="submitting"
-          >注册</a-button
+          >{{ $t("app.register.register") }}</a-button
         >
         <router-link class="login" to="/user/login">
-          使用已有账户登录
+          {{ $t("app.register.sign-in") }}
         </router-link>
       </a-form-item>
     </a-form>
@@ -155,6 +157,7 @@
 
 <script>
 import { mapActions } from "vuex";
+import { Modal } from "ant-design-vue";
 
 const passwordProgressMap = {
   ok: "success",
@@ -201,7 +204,7 @@ export default {
         }
       });
     },
-    runGetCaptchaCountDown() {
+    onGetCaptcha() {
       this.count = 59;
       this.interval = setInterval(() => {
         this.count -= 1;
@@ -209,9 +212,9 @@ export default {
           clearInterval(this.interval);
         }
       }, 1000);
-    },
-    onGetCaptcha() {
-      this.runGetCaptchaCountDown();
+      Modal.info({
+        title: this.$t("app.login.verification-code-warning")
+      });
     },
     changePrefix(value) {
       this.prefix = value;
@@ -229,16 +232,28 @@ export default {
     },
     passwordStatusMap() {
       const passwordStatusMap = {
-        ok: <div class="success">强度：强</div>,
-        pass: <div class="warning">强度：中</div>,
-        poor: <div class="error">强度：太短</div>
+        ok: (
+          <div class="success">
+            {this.$t("validation.password.strength.strong")}
+          </div>
+        ),
+        pass: (
+          <div class="warning">
+            {this.$t("validation.password.strength.medium")}
+          </div>
+        ),
+        poor: (
+          <div class="error">
+            {this.$t("validation.password.strength.short")}
+          </div>
+        )
       };
       return passwordStatusMap[this.getPasswordStatus()];
     },
     checkPassword(rule, value, callback) {
       const { visible, confirmDirty } = this;
       if (!value) {
-        (this.help = "请输入密码！"),
+        (this.help = this.$t("validation.password.required")),
           (this.visible = !!value),
           callback("error");
       } else {
@@ -276,7 +291,7 @@ export default {
     checkConfirm(rule, value, callback) {
       const { form } = this;
       if (value && value !== form.getFieldValue("password")) {
-        callback("两次输入的密码不匹配!");
+        callback(this.$t("validation.password.twice"));
       } else {
         callback();
       }

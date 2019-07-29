@@ -2,24 +2,24 @@
   <a-card borderd="false">
     <Result
       type="error"
-      title="提交失败"
-      description="请核对并修改以下信息后，再重新提交。"
+      :title="$t('app.result.error.title')"
+      :description="$t('app.result.error.description')"
       style="margin-top: 48px; margin-bottom: 16px"
     >
       <template slot="extra">
         <div
           style="font-size: 16px; color: rgba(0, 0, 0, 0.85); font-weight: 500; margin-bottom: 16px"
         >
-          您提交的内容有如下错误：
+          {{ $t("app.result.error.hint-title") }}
         </div>
         <div style="margin-bottom: 16px">
           <a-icon
             style="color: #f5222d; margin-right: 8px"
             type="close-circle-o"
           />
-          您的账户已被冻结
+          {{ $t("app.result.error.hint-text1") }}
           <a style="margin-left: 16px">
-            立即解冻
+            {{ $t("app.result.error.hint-btn1") }}
             <a-icon type="right" />
           </a>
         </div>
@@ -28,15 +28,17 @@
             style="color: #f5222d; margin-right: 8px"
             type="close-circle-o"
           />
-          您的账户还不具备申请资格
+          {{ $t("app.result.error.hint-text2") }}
           <a style="margin-left: 16px">
-            立即升级
+            {{ $t("app.result.error.hint-btn2") }}
             <a-icon type="right" />
           </a>
         </div>
       </template>
       <template slot="actions">
-        <a-button type="primary">返回修改</a-button>
+        <a-button type="primary">{{
+          $t("app.result.error.btn-text")
+        }}</a-button>
       </template>
     </Result>
   </a-card>

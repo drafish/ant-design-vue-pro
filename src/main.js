@@ -3,8 +3,10 @@ import VueI18n from "vue-i18n";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store/index.js";
-import enUS from "./locale/enUS";
-import zhCN from "./locale/zhCN";
+import enUS from "./locales/en-US";
+import zhCN from "./locales/zh-CN";
+import zhTW from "./locales/zh-TW";
+import ptBR from "./locales/pt-BR";
 import queryString from "query-string";
 import VueHighlightJS from "vue-highlightjs";
 
@@ -100,8 +102,10 @@ Vue.prototype.$message = message;
 const i18n = new VueI18n({
   locale: queryString.parse(location.search).locale || "zhCN",
   messages: {
-    zhCN: { message: zhCN },
-    enUS: { message: enUS }
+    zhCN,
+    enUS,
+    zhTW,
+    ptBR
   }
 });
 

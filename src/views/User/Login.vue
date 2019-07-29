@@ -10,25 +10,27 @@
         }
       "
     >
-      <Tab key="account" tab="账户密码登录">
+      <Tab key="account" :tab="$t('app.login.tab-login-credentials')">
         <VNodes
           v-if="status === 'error' && type === 'account' && !submitting"
           :vnodes="renderMessage('account')"
         />
         <UserName
           name="userName"
-          placeholder="用户名：admin or user"
+          :placeholder="`${$t('app.login.userName')}: admin or user`"
           :rules="[
             {
               required: true,
-              message: '请输入用户名!'
+              message: $t('validation.userName.required')
             }
           ]"
         />
         <Password
           name="password"
-          placeholder="密码：ant.design"
-          :rules="[{ required: true, message: '请输入密码！' }]"
+          :placeholder="`${$t('app.login.password')}：ant.design`"
+          :rules="[
+            { required: true, message: $t('validation.password.required') }
+          ]"
           :onPressEnter="
             e => {
               e.preventDefault();
@@ -37,58 +39,58 @@
           "
         />
       </Tab>
-      <Tab key="mobile" tab="手机号登录">
+      <Tab key="mobile" :tab="$t('app.login.tab-login-mobile')">
         <VNodes
           v-if="status === 'error' && type === 'mobile' && !submitting"
           :vnodes="renderMessage('mobile')"
         />
         <Mobile
           name="mobile"
-          placeholder="手机号"
+          :placeholder="$t('form.phone-number.placeholder')"
           :rules="[
             {
               required: true,
-              message: '请输入手机号！'
+              message: $t('validation.phone-number.required')
             },
             {
               pattern: /^1\d{10}$/,
-              message: '手机号格式错误！'
+              message: $t('validation.phone-number.wrong-format')
             }
           ]"
         />
         <Captcha
           name="captcha"
-          placeholder="验证码"
+          :placeholder="$t('form.verification-code.placeholder')"
           :countDown="120"
           :onGetCaptcha="onGetCaptcha"
-          getCaptchaButtonText="获取验证码"
-          getCaptchaSecondText="秒"
+          :getCaptchaButtonText="$t('form.get-captcha')"
+          :getCaptchaSecondText="$t('form.captcha.second')"
           :rules="[
             {
               required: true,
-              message: '请输入验证码！'
+              message: $t('validation.verification-code.required')
             }
           ]"
         />
       </Tab>
       <div>
         <a-checkbox :checked="autoLogin" @change="changeAutoLogin">
-          自动登录
+          {{ $t("app.login.remember-me") }}
         </a-checkbox>
         <a style="float: right" href="">
-          忘记密码
+          {{ $t("app.login.forgot-password") }}
         </a>
       </div>
       <Submit :loading="submitting">
-        登录
+        {{ $t("app.login.login") }}
       </Submit>
       <div class="other">
-        其他登录方式
+        {{ $t("app.login.sign-in-with") }}
         <a-icon type="alipay-circle" class="icon" theme="outlined" />
         <a-icon type="taobao-circle" class="icon" theme="outlined" />
         <a-icon type="weibo-circle" class="icon" theme="outlined" />
         <router-link class="register" to="/user/register">
-          注册账户
+          {{ $t("app.login.signup") }}
         </router-link>
       </div>
     </Login>
@@ -168,8 +170,7 @@ export default {
                 .then(resolve)
                 .catch(reject);
               Modal.info({
-                title:
-                  "此项目为演示项目，并不会真的给您发送验证码。请切换到账户密码登录界面按提示登录。"
+                title: this.$t("app.login.verification-code-warning")
               });
             }
           }
@@ -182,8 +183,8 @@ export default {
           style="margin-bottom: 24px"
           message={
             type === "account"
-              ? "账户或密码错误（admin/ant.design）"
-              : "验证码错误"
+              ? this.$t("app.login.message-invalid-credentials")
+              : this.$t("app.login.message-invalid-verification-code")
           }
           type="error"
           showIcon

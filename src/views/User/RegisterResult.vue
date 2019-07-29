@@ -2,23 +2,29 @@
   <Result
     className="registerResult"
     type="success"
-    description="激活邮件已发送到你的邮箱中，邮件有效期为24小时。请及时登录邮箱，点击邮件中的链接激活帐户。"
+    :description="$t('app.register-result.activation-email')"
     style="margin-top: 56px"
   >
     <template slot="title">
       <div class="title">
-        你的账户：{{ account || "AntDesign@example.com" }} 注册成功
+        {{
+          $t("app.register-result.msg", {
+            email: account || "AntDesign@example.com"
+          })
+        }}
       </div>
     </template>
     <template slot="actions">
       <div class="actions">
         <a href="">
           <a-button size="large" type="primary">
-            查看邮箱
+            {{ $t("app.register-result.view-mailbox") }}
           </a-button>
         </a>
         <router-link to="/">
-          <a-button size="large">返回首页</a-button>
+          <a-button size="large">{{
+            $t("app.register-result.back-home")
+          }}</a-button>
         </router-link>
       </div>
     </template>

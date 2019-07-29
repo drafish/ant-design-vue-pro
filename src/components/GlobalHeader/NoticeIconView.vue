@@ -3,8 +3,8 @@
     class="action"
     :count="unreadCount"
     :loading="fetchingNotices"
-    :clearText="$t('message')['component.noticeIcon.clear']"
-    :viewMoreText="$t('message')['component.noticeIcon.view-more']"
+    :clearText="$t('component.noticeIcon.clear')"
+    :viewMoreText="$t('component.noticeIcon.view-more')"
     @itemClick="handleItemClick"
     @clear="handleNoticeClear"
     @viewMore="handleViewMore"
@@ -14,24 +14,24 @@
       tabKey="notification"
       :count="unreadData.notification"
       :list="noticeData.notification"
-      :title="$t('message')['component.globalHeader.notification']"
-      :emptyText="$t('message')['component.globalHeader.notification.empty']"
+      :title="$t('component.globalHeader.notification')"
+      :emptyText="$t('component.globalHeader.notification.empty')"
       showViewMore
     ></notice-icon-tab>
     <notice-icon-tab
       tabKey="message"
       :count="unreadData.message"
       :list="noticeData.message"
-      :title="$t('message')['component.globalHeader.message']"
-      :emptyText="$t('message')['component.globalHeader.message.empty']"
+      :title="$t('component.globalHeader.message')"
+      :emptyText="$t('component.globalHeader.message.empty')"
       showViewMore
     ></notice-icon-tab>
     <notice-icon-tab
       tabKey="event"
       :count="unreadData.event"
       :list="noticeData.event"
-      :title="$t('message')['component.globalHeader.event']"
-      :emptyText="$t('message')['component.globalHeader.event.empty']"
+      :title="$t('component.globalHeader.event')"
+      :emptyText="$t('component.globalHeader.event.empty')"
       showViewMore
     ></notice-icon-tab>
   </notice-icon>
@@ -99,7 +99,7 @@ export default {
     },
     handleNoticeClear(title, tabKey) {
       this.$message.success(
-        `${this.$t("message")["component.noticeIcon.cleared"]} ${title}`
+        `${this.$t("component.noticeIcon.cleared")} ${title}`
       );
       this.clearNotices(tabKey);
     },
