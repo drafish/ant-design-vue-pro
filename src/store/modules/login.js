@@ -1,4 +1,4 @@
-import router from "../../router";
+import router from "@/router";
 import { parse } from "query-string";
 import request from "@/utils/request";
 import { setAuthority } from "@/utils/authority";
