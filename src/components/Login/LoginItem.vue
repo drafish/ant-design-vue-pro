@@ -1,6 +1,7 @@
 <script>
 import { Form, Input, Button, Row, Col, Icon } from "ant-design-vue";
 import omit from "lodash/omit";
+import styles from "./index.less";
 import LoginContext from "./LoginContext";
 import ItemMap from "./map";
 
@@ -101,7 +102,7 @@ const WrapFormItem = {
     } = this.$props;
 
     customprops.prefix = (
-      <Icon type={customprops.prefixType} class="prefixIcon" />
+      <Icon type={customprops.prefixType} class={styles.prefixIcon} />
     );
 
     // get getFieldDecorator props
@@ -125,7 +126,7 @@ const WrapFormItem = {
             <Col span={8}>
               <Button
                 disabled={!!count}
-                class="getCaptcha"
+                class={styles.getCaptcha}
                 size="large"
                 onClick={this.getCaptcha}
               >

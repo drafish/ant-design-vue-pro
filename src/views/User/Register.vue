@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <div :class="$style.main">
     <h3>{{ $t("app.register.register") }}</h3>
     <a-form :form="form" @submit="handleSubmit">
       <a-form-item>
@@ -127,7 +127,7 @@
           </a-col>
           <a-col :span="8">
             <a-button
-              class="getCaptcha"
+              :class="$style.getCaptcha"
               size="large"
               @click="onGetCaptcha"
               :disabled="!!count"
@@ -141,13 +141,13 @@
       <a-form-item>
         <a-button
           size="large"
-          class="submit"
+          :class="$style.submit"
           type="primary"
           htmlType="submit"
           :loading="submitting"
           >{{ $t("app.register.register") }}</a-button
         >
-        <router-link class="login" to="/user/login">
+        <router-link :class="$style.login" to="/user/login">
           {{ $t("app.register.sign-in") }}
         </router-link>
       </a-form-item>
@@ -233,17 +233,17 @@ export default {
     passwordStatusMap() {
       const passwordStatusMap = {
         ok: (
-          <div class="success">
+          <div class={this.$style.success}>
             {this.$t("validation.password.strength.strong")}
           </div>
         ),
         pass: (
-          <div class="warning">
+          <div class={this.$style.warning}>
             {this.$t("validation.password.strength.medium")}
           </div>
         ),
         poor: (
-          <div class="error">
+          <div class={this.$style.error}>
             {this.$t("validation.password.strength.short")}
           </div>
         )
@@ -277,10 +277,10 @@ export default {
       const value = form.getFieldValue("password");
       const passwordStatus = this.getPasswordStatus();
       return value && value.length ? (
-        <div class={`progress-${passwordStatus}`}>
+        <div class={this.$style[`progress-${passwordStatus}`]}>
           <a-progress
             status={passwordProgressMap[passwordStatus]}
-            class="progress"
+            class={this.$style.progress}
             strokeWidth={6}
             percent={value.length * 10 > 100 ? 100 : value.length * 10}
             showInfo={false}
@@ -300,58 +300,4 @@ export default {
 };
 </script>
 
-<style scoped lang="less">
-@import "~ant-design-vue/lib/style/themes/default.less";
-
-.main {
-  width: 388px;
-  margin: 0 auto;
-
-  /deep/ .ant-form-item {
-    margin-bottom: 24px;
-  }
-
-  h3 {
-    margin-bottom: 20px;
-    font-size: 16px;
-  }
-
-  .getCaptcha {
-    display: block;
-    width: 100%;
-  }
-
-  .submit {
-    width: 50%;
-  }
-
-  .login {
-    float: right;
-    line-height: @btn-height-lg;
-  }
-}
-
-.success,
-.warning,
-.error {
-  transition: color 0.3s;
-}
-
-.success {
-  color: @success-color;
-}
-
-.warning {
-  color: @warning-color;
-}
-
-.error {
-  color: @error-color;
-}
-
-.progress-pass > .progress {
-  /deep/ .ant-progress-bg {
-    background-color: @warning-color;
-  }
-}
-</style>
+<style lang="less" src="./Register.less" module></style>

@@ -1,6 +1,7 @@
 <script>
 import { Form, Tabs } from "ant-design-vue";
 import LoginContext from "./LoginContext";
+import styles from "./index.less";
 
 const Login = {
   props: {
@@ -84,13 +85,13 @@ const Login = {
     });
     return (
       <LoginContext.Provider value={this.getContext()}>
-        <div class="login">
+        <div class={styles.login}>
           <Form onSubmit={this.handleSubmit}>
             {tabs.length > 0 ? (
               <div>
                 <Tabs
                   animated={false}
-                  class={"tabs"}
+                  class={styles.tabs}
                   activeKey={type}
                   onChange={this.onSwitch}
                 >

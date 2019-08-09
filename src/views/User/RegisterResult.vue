@@ -1,12 +1,12 @@
 <template>
   <Result
-    className="registerResult"
+    :className="$style.registerResult"
     type="success"
     :description="$t('app.register-result.activation-email')"
     style="margin-top: 56px"
   >
     <template slot="title">
-      <div class="title">
+      <div :class="$style.title">
         {{
           $t("app.register-result.msg", {
             email: account || "AntDesign@example.com"
@@ -15,7 +15,7 @@
       </div>
     </template>
     <template slot="actions">
-      <div class="actions">
+      <div :class="$style.actions">
         <a href="">
           <a-button size="large" type="primary">
             {{ $t("app.register-result.view-mailbox") }}
@@ -46,21 +46,4 @@ export default {
 };
 </script>
 
-<style scoped lang="less">
-.registerResult {
-  /deep/ .anticon {
-    font-size: 64px;
-  }
-  .title {
-    margin-top: 32px;
-    font-size: 20px;
-    line-height: 28px;
-  }
-  .actions {
-    margin-top: 40px;
-    a + a {
-      margin-left: 8px;
-    }
-  }
-}
-</style>
+<style lang="less" src="./RegisterResult.less" module></style>

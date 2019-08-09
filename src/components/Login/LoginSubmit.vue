@@ -1,5 +1,6 @@
 <script>
 import { Button, Form } from "ant-design-vue";
+import styles from "./index.less";
 
 const FormItem = Form.Item;
 
@@ -13,7 +14,7 @@ export default {
       <FormItem>
         <Button
           size="large"
-          class="submit"
+          class={styles.submit}
           type="primary"
           htmlType="submit"
           loading={this.loading}
@@ -25,10 +26,3 @@ export default {
   }
 };
 </script>
-
-<style lang="less" scoped>
-.submit {
-  width: 100%;
-  margin-top: 24px;
-}
-</style>

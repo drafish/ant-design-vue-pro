@@ -1,5 +1,6 @@
 const path = require("path");
 const webpack = require("webpack");
+const slash = require("slash2");
 const AntDesignThemePlugin = require("antd-theme-webpack-plugin");
 const { createMockMiddleware } = require("umi-mock-middleware");
 
@@ -18,7 +19,29 @@ const options = {
 const themePlugin = new AntDesignThemePlugin(options);
 module.exports = {
   css: {
+    modules: true,
     loaderOptions: {
+      css: {
+        getLocalIdent: (context, localIdentName, localName) => {
+          if (
+            context.resourcePath.includes("node_modules") ||
+            context.resourcePath.includes("ant.design.pro.less") ||
+            context.resourcePath.includes("global.less")
+          ) {
+            return localName;
+          }
+          const match = context.resourcePath.match(/src(.*)/);
+          if (match && match[1]) {
+            const antdProPath = match[1].replace(".less", "");
+            const arr = slash(antdProPath)
+              .split("/")
+              .map(a => a.replace(/([A-Z])/g, "-$1"))
+              .map(a => a.toLowerCase());
+            return `antd-pro${arr.join("-")}-${localName}`.replace(/--/g, "-");
+          }
+          return localName;
+        }
+      },
       less: {
         modifyVars: {
           "primary-color": "#1DA57A"

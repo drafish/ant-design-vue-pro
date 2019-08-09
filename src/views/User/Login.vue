@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <div :class="$style.main">
     <Login
       :defaultActiveKey="type"
       :onTabChange="onTabChange"
@@ -84,12 +84,12 @@
       <Submit :loading="submitting">
         {{ $t("app.login.login") }}
       </Submit>
-      <div class="other">
+      <div :class="$style.other">
         {{ $t("app.login.sign-in-with") }}
-        <a-icon type="alipay-circle" class="icon" theme="outlined" />
-        <a-icon type="taobao-circle" class="icon" theme="outlined" />
-        <a-icon type="weibo-circle" class="icon" theme="outlined" />
-        <router-link class="register" to="/user/register">
+        <a-icon type="alipay-circle" :class="$style.icon" theme="outlined" />
+        <a-icon type="taobao-circle" :class="$style.icon" theme="outlined" />
+        <a-icon type="weibo-circle" :class="$style.icon" theme="outlined" />
+        <router-link :class="$style.register" to="/user/register">
           {{ $t("app.login.signup") }}
         </router-link>
       </div>
@@ -195,86 +195,4 @@ export default {
 };
 </script>
 
-<style scoped lang="less">
-@import "~ant-design-vue/lib/style/themes/default.less";
-
-.main {
-  width: 388px;
-  margin: 0 auto;
-  @media screen and (max-width: @screen-sm) {
-    width: 95%;
-  }
-
-  .icon {
-    margin-left: 16px;
-    color: rgba(0, 0, 0, 0.2);
-    font-size: 24px;
-    vertical-align: middle;
-    cursor: pointer;
-    transition: color 0.3s;
-
-    &:hover {
-      color: @primary-color;
-    }
-  }
-
-  .other {
-    margin-top: 24px;
-    line-height: 22px;
-    text-align: left;
-
-    .register {
-      float: right;
-    }
-  }
-  .login {
-    /deep/ .ant-tabs .ant-tabs-bar {
-      margin-bottom: 24px;
-      text-align: center;
-      border-bottom: 0;
-    }
-
-    /deep/ .ant-form-item {
-      margin: 0 2px 24px;
-    }
-
-    .getCaptcha {
-      display: block;
-      width: 100%;
-    }
-
-    .icon {
-      margin-left: 16px;
-      color: rgba(0, 0, 0, 0.2);
-      font-size: 24px;
-      vertical-align: middle;
-      cursor: pointer;
-      transition: color 0.3s;
-
-      &:hover {
-        color: @primary-color;
-      }
-    }
-
-    .other {
-      margin-top: 24px;
-      line-height: 22px;
-      text-align: left;
-
-      .register {
-        float: right;
-      }
-    }
-
-    .prefixIcon {
-      color: @disabled-color;
-      font-size: @font-size-base;
-    }
-
-    .submit {
-      width: 100%;
-      margin-top: 24px;
-    }
-  }
-}
-</style>
+<style lang="less" src="./Login.less" module></style>
