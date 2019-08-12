@@ -1,14 +1,14 @@
 <template>
-  <div class="container">
-    <div class="content">
-      <div class="top">
-        <div class="header">
+  <div :class="$style.container">
+    <div :class="$style.content">
+      <div :class="$style.top">
+        <div :class="$style.header">
           <a to="/">
-            <img alt="logo" class="logo" :src="logo" />
-            <span class="title">Ant Design</span>
+            <img alt="logo" :class="$style.logo" :src="logo" />
+            <span :class="$style.title">Ant Design</span>
           </a>
         </div>
-        <div class="desc">
+        <div :class="$style.desc">
           Ant Design 是西湖区最具影响力的 Web 设计规范
         </div>
       </div>
@@ -33,7 +33,7 @@ export default {
 };
 </script>
 
-<style scoped lang="less">
+<style lang="less" module>
 @import "~ant-design-vue/lib/style/themes/default.less";
 
 .container {

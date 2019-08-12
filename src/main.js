@@ -44,26 +44,6 @@ import Authorized from "./components/Authorized";
 import Auth from "./directives/auth";
 import "highlight.js/styles/github.css";
 
-// FormItem中的decoratorOption方法有bug，已提交pr到ant-design-vue
-// 47行到73行为临时解决方案
-const FormItem = Form.Item;
-import find from "lodash/find";
-import warning from "ant-design-vue/es/_util/warning";
-FormItem.methods.decoratorOption = vnode => {
-  if (vnode.data && vnode.data.directives) {
-    const directive = find(vnode.data.directives, ["name", "decorator"]);
-    warning(
-      !directive || (directive && Array.isArray(directive.value)),
-      `Invalid directive: type check failed for directive "decorator". Expected Array, got ${typeof (directive // directive可能为undefined
-        ? directive.value
-        : directive)}. At ${vnode.tag}.`
-    );
-    return directive ? directive.value : null;
-  } else {
-    return null;
-  }
-};
-
 Vue.config.productionTip = false;
 
 Vue.use(Button);
