@@ -69,7 +69,7 @@ module.exports = {
     svgRule.use("vue-svg-loader").loader("vue-svg-loader");
   },
   devServer: {
-    open: true,
+    // open: true,
     before: function(app) {
       if (process.env.MOCK !== "none") {
         app.use(createMockMiddleware());

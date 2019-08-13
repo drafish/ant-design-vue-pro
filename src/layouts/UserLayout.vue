@@ -1,5 +1,8 @@
 <template>
   <div :class="$style.container">
+    <div :class="$style.lang">
+      <SelectLang />
+    </div>
     <div :class="$style.content">
       <div :class="$style.top">
         <div :class="$style.header">
@@ -20,10 +23,12 @@
 
 <script>
 import GlobalFooter from "@/components/GlobalFooter";
+import SelectLang from "@/components/SelectLang";
 import logo from "@/assets/logo.png";
 export default {
   components: {
-    GlobalFooter
+    GlobalFooter,
+    SelectLang
   },
   data() {
     return {

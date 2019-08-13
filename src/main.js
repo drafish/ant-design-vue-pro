@@ -1,13 +1,8 @@
 import Vue from "vue";
-import VueI18n from "vue-i18n";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store/index.js";
-import enUS from "./locales/en-US";
-import zhCN from "./locales/zh-CN";
-import zhTW from "./locales/zh-TW";
-import ptBR from "./locales/pt-BR";
-import queryString from "query-string";
+import i18n from "./locales";
 import VueHighlightJS from "vue-highlightjs";
 
 import {
@@ -62,7 +57,6 @@ Vue.use(Avatar);
 Vue.use(Tooltip);
 Vue.component("Authorized", Authorized);
 Vue.use(Auth);
-Vue.use(VueI18n);
 Vue.use(VueHighlightJS);
 Vue.use(Badge);
 Vue.use(Tabs);
@@ -78,16 +72,6 @@ Vue.use(Alert);
 Vue.use(Card);
 Vue.use(Steps);
 Vue.prototype.$message = message;
-
-const i18n = new VueI18n({
-  locale: queryString.parse(location.search).locale || "zhCN",
-  messages: {
-    zhCN,
-    enUS,
-    zhTW,
-    ptBR
-  }
-});
 
 const IconFont = Icon.createFromIconfontCN({
   scriptUrl: "//at.alicdn.com/t/font_1154049_w87h4oeytph.js" // 在 iconfont.cn 上生成
