@@ -42,6 +42,9 @@ import "highlight.js/styles/github.css";
 
 Vue.config.productionTip = false;
 
+import VueClipboard from "vue-clipboard2";
+Vue.use(VueClipboard);
+
 Vue.use(Button);
 Vue.use(Layout);
 Vue.use(Icon);

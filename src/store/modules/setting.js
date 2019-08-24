@@ -6,7 +6,7 @@ const updateTheme = primaryColor => {
   // Don't compile less in production!
   // preview.pro.ant.design only do not use in your production ; preview.pro.ant.design 专用环境变量，请不要在你的项目中使用它。
   if (ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION !== "site") {
-    return;
+    // return;// 开发阶段先注释这行，方便展示
   }
   // Determine if the component is remounted
   if (!primaryColor) {
@@ -75,20 +75,28 @@ export default {
       Object.keys(state).forEach(key => {
         if (urlParams.searchParams.has(key)) {
           const value = urlParams.searchParams.get(key);
-          setting[key] = value === "1" ? true : value;
+          if (value === "1") {
+            setting[key] = true;
+          } else if (value === "false") {
+            setting[key] = false;
+          } else {
+            setting[key] = value;
+          }
         }
       });
       const { primaryColor, colorWeak } = setting;
+      console.log(colorWeak);
       if (state.primaryColor !== primaryColor) {
         updateTheme(primaryColor);
       }
       updateColorWeak(colorWeak);
-      return {
+      Object.assign(state, {
         ...state,
         ...setting
-      };
+      });
     },
-    changeSetting(state, payload) {
+    updateSetting(state, payload) {
+      console.log(payload);
       const urlParams = new URL(window.location.href);
       Object.keys(defaultSettings).forEach(key => {
         if (urlParams.searchParams.has(key)) {
@@ -116,10 +124,10 @@ export default {
       }
       updateColorWeak(colorWeak);
       window.history.replaceState(null, "setting", urlParams.href);
-      state = {
+      Object.assign(state, {
         ...state,
         ...payload
-      };
+      });
     }
   }
 };

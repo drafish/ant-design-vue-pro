@@ -25,9 +25,10 @@
               <Footer />
             </a-layout>
           </a-layout>
-          <Authorized :authority="['admin']">
+          <!-- <Authorized :authority="['admin']">
             <SettingDrawer />
-          </Authorized>
+          </Authorized> -->
+          <VNodes :vnodes="renderSettingDrawer()" />
         </div>
       </Provider>
     </ContainerQuery>
@@ -109,10 +110,14 @@ export default {
     }
   },
   components: {
+    VNodes: {
+      functional: true,
+      render: (h, ctx) => ctx.props.vnodes
+    },
     Header,
     Footer,
     SiderMenu,
-    SettingDrawer,
+    // SettingDrawer,
     Media,
     ContainerQuery,
     Provider
@@ -120,9 +125,11 @@ export default {
   mounted() {
     const { children, path, authority } = this.$router.options.routes[1];
     this.getMenuData({ routes: children, path, authority });
+    this.getSetting();
   },
   methods: {
     ...mapActions("menu", ["getMenuData"]),
+    ...mapMutations("setting", ["getSetting"]),
     ...mapMutations("global", ["changeLayoutCollapsed"]),
     getContext() {
       const { location, breadcrumbNameMap } = this;
@@ -145,6 +152,18 @@ export default {
 
     handleMenuCollapse(collapsed) {
       this.changeLayoutCollapsed(collapsed);
+    },
+    renderSettingDrawer() {
+      // Do not render SettingDrawer in production
+      // unless it is deployed in preview.pro.ant.design as demo
+      // preview.pro.ant.design only do not use in your production ; preview.pro.ant.design 专用环境变量，请不要在你的项目中使用它。
+      if (
+        process.env.NODE_ENV === "production" &&
+        ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION !== "site"
+      ) {
+        return null;
+      }
+      return <SettingDrawer />;
     }
   }
 };
