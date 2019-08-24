@@ -44,7 +44,7 @@ const router = new Router({
     },
     {
       path: "/",
-      meta: { authority: ["user", "admin"] },
+      authority: ["user", "admin"],
       component: () =>
         import(/* webpackChunkName: "layout" */ "./layouts/BasicLayout"),
       children: [
@@ -56,15 +56,16 @@ const router = new Router({
         {
           path: "/dashboard",
           name: "dashboard",
-          meta: { icon: "dashboard", title: "仪表盘" },
+          icon: "dashboard",
           component: { render: h => h("router-view") },
           children: [
             {
               path: "/dashboard/analysis",
               name: "analysis",
-              meta: { title: "分析页" },
               component: () =>
-                import(/* webpackChunkName: "dashboard" */ "./views/Dashboard/Analysis")
+                import(
+                  /* webpackChunkName: "dashboard" */ "./views/Dashboard/Analysis"
+                )
             }
           ]
         },
@@ -72,13 +73,12 @@ const router = new Router({
         {
           path: "/form",
           name: "form",
+          icon: "form",
           component: { render: h => h("router-view") },
-          meta: { icon: "form", title: "表单", authority: ["admin"] },
           children: [
             {
               path: "/form/basic-form",
               name: "basicform",
-              meta: { title: "基础表单" },
               component: () =>
                 import(/* webpackChunkName: "form" */ "./views/Forms/BasicForm")
             },
@@ -86,7 +86,6 @@ const router = new Router({
               path: "/form/step-form",
               name: "stepform",
               hideChildrenInMenu: true,
-              meta: { title: "分布表单" },
               component: () =>
                 import(/* webpackChunkName: "form" */ "./views/Forms/StepForm"),
               children: [
@@ -98,19 +97,25 @@ const router = new Router({
                   path: "/form/step-form/info",
                   name: "info",
                   component: () =>
-                    import(/* webpackChunkName: "form" */ "./views/Forms/StepForm/Step1")
+                    import(
+                      /* webpackChunkName: "form" */ "./views/Forms/StepForm/Step1"
+                    )
                 },
                 {
                   path: "/form/step-form/confirm",
                   name: "confirm",
                   component: () =>
-                    import(/* webpackChunkName: "form" */ "./views/Forms/StepForm/Step2")
+                    import(
+                      /* webpackChunkName: "form" */ "./views/Forms/StepForm/Step2"
+                    )
                 },
                 {
                   path: "/form/step-form/result",
                   name: "result",
                   component: () =>
-                    import(/* webpackChunkName: "form" */ "./views/Forms/StepForm/Step3")
+                    import(
+                      /* webpackChunkName: "form" */ "./views/Forms/StepForm/Step3"
+                    )
                 }
               ]
             }
@@ -120,30 +125,33 @@ const router = new Router({
         {
           path: "/exception",
           name: "exception",
+          icon: "warning",
           component: { render: h => h("router-view") },
           redirect: "/exception/403",
-          meta: { title: "异常页", icon: "warning", authority: ["admin"] },
           children: [
             {
               path: "/exception/403",
-              name: "exception403",
+              name: "not-permission",
               component: () =>
-                import(/* webpackChunkName: "exception" */ "@/views/Exception/403"),
-              meta: { title: "403" }
+                import(
+                  /* webpackChunkName: "exception" */ "@/views/Exception/403"
+                )
             },
             {
               path: "/exception/404",
-              name: "exception404",
+              name: "not-find",
               component: () =>
-                import(/* webpackChunkName: "exception" */ "@/views/Exception/404"),
-              meta: { title: "404" }
+                import(
+                  /* webpackChunkName: "exception" */ "@/views/Exception/404"
+                )
             },
             {
               path: "/exception/500",
-              name: "exception500",
+              name: "server-error",
               component: () =>
-                import(/* webpackChunkName: "exception" */ "@/views/Exception/500"),
-              meta: { title: "500" }
+                import(
+                  /* webpackChunkName: "exception" */ "@/views/Exception/500"
+                )
             }
           ]
         },
@@ -151,45 +159,47 @@ const router = new Router({
         {
           path: "/profile",
           name: "profile",
+          icon: "profile",
           component: { render: h => h("router-view") },
           redirect: "/profile/basic",
-          meta: { title: "详情页", icon: "profile", authority: ["admin"] },
           children: [
             {
               path: "/profile/basic",
               name: "basic",
               component: () =>
-                import(/* webpackChunkName: "profile" */ "@/views/Profile/BasicProfile"),
-              meta: { title: "基础详情页" }
+                import(
+                  /* webpackChunkName: "profile" */ "@/views/Profile/BasicProfile"
+                )
             },
             {
               path: "/profile/advanced",
               name: "advanced",
               component: () =>
-                import(/* webpackChunkName: "profile" */ "@/views/Profile/AdvancedProfile"),
-              meta: { title: "高级详情页" }
+                import(
+                  /* webpackChunkName: "profile" */ "@/views/Profile/AdvancedProfile"
+                )
             }
           ]
         },
         {
           path: "/result",
-          name: "results",
+          name: "result",
+          icon: "check-circle-o",
           component: { render: h => h("router-view") },
-          meta: { title: "结果页", icon: "check-circle-o" },
           children: [
             {
               path: "/result/success",
               name: "success",
               component: () =>
-                import(/* webpackChunkName: "result" */ "@/views/Result/Success"),
-              meta: { title: "成功页" }
+                import(
+                  /* webpackChunkName: "result" */ "@/views/Result/Success"
+                )
             },
             {
-              path: "/result/error",
-              name: "error",
+              path: "/result/fail",
+              name: "fail",
               component: () =>
-                import(/* webpackChunkName: "result" */ "@/views/Result/Error"),
-              meta: { title: "失败页" }
+                import(/* webpackChunkName: "result" */ "@/views/Result/Error")
             }
           ]
         }
@@ -216,8 +226,8 @@ router.beforeEach((to, from, next) => {
   if (to.path !== from.path) {
     NProgress.start();
   }
-  const record = findLast(to.matched, record => record.meta.authority);
-  if (record && !check(record.meta.authority)) {
+  const record = findLast(to.matched, record => record.authority);
+  if (record && !check(record.authority)) {
     if (!isLogin() && to.path !== "/user/login") {
       next({
         path: "/user/login"

@@ -1,6 +1,5 @@
 import Vue from "vue";
 import VueI18n from "vue-i18n";
-import queryString from "query-string";
 import enUS from "./en-US";
 import zhCN from "./zh-CN";
 import zhTW from "./zh-TW";
@@ -9,7 +8,7 @@ import ptBR from "./pt-BR";
 Vue.use(VueI18n);
 
 const i18n = new VueI18n({
-  locale: queryString.parse(location.search).locale || "zh-CN",
+  locale: getLocale() || "zh-CN",
   messages: {
     "zh-CN": zhCN,
     "en-US": enUS,
@@ -35,7 +34,7 @@ function getLocale() {
 }
 
 function formatMessage() {
-  return i18n.t(arguments);
+  return i18n.t(...arguments);
 }
 
 export { setLocale, getLocale, formatMessage };

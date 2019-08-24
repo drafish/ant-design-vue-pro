@@ -4,6 +4,7 @@ import router from "./router";
 import store from "./store/index.js";
 import i18n from "./locales";
 import VueHighlightJS from "vue-highlightjs";
+import IconFont from "@/components/IconFont";
 
 import {
   Button,
@@ -73,9 +74,9 @@ Vue.use(Card);
 Vue.use(Steps);
 Vue.prototype.$message = message;
 
-const IconFont = Icon.createFromIconfontCN({
-  scriptUrl: "//at.alicdn.com/t/font_1154049_w87h4oeytph.js" // 在 iconfont.cn 上生成
-});
+// const IconFont = Icon.createFromIconfontCN({
+//   scriptUrl: "//at.alicdn.com/t/font_1154049_w87h4oeytph.js" // 在 iconfont.cn 上生成
+// });
 
 Vue.component("IconFont", IconFont);
 

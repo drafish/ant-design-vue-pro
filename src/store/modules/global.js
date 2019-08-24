@@ -1,6 +1,7 @@
 import request from "../../utils/request";
 
 const state = {
+  collapsed: false,
   notices: [],
   fetchingStatus: {
     notice: false
@@ -45,6 +46,9 @@ const actions = {
 };
 
 const mutations = {
+  changeLayoutCollapsed(state, payload) {
+    state.collapsed = payload;
+  },
   changeFetchStatus(state, { payload }) {
     state.fetchingStatus = {
       ...state.fetchingStatus,

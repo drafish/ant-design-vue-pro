@@ -11,7 +11,9 @@ module.exports = {
     "^@/(.*)$": "<rootDir>/src/$1"
   },
   snapshotSerializers: ["jest-serializer-vue"],
-  testMatch: ["**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx)"],
+  testMatch: [
+    "**/*.(spec|test).(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx)"
+  ],
   testURL: "http://localhost/",
   collectCoverage: process.env.COVERAGE === "true",
   collectCoverageFrom: ["src/**/*.{js,vue}", "!**/node_modules/**"]

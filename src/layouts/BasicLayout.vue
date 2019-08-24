@@ -1,63 +1,111 @@
 <template>
-  <div :class="[`nav-theme-${navTheme}`, `nav-layout-${navLayout}`]">
-    <a-layout style="min-height: 100vh">
-      <a-layout-sider
-        v-if="navLayout === 'left'"
-        :theme="navTheme"
-        :trigger="null"
-        collapsible
-        v-model="collapsed"
-        width="256px"
-      >
-        <div class="logo">
-          <logo></logo>
-          <h1>Ant Design Pro</h1>
+  <Media query="(max-width: 599px)" v-slot="isMobile">
+    <ContainerQuery :query="query" v-model="params">
+      <Provider :value="getContext()">
+        <div :class="className">
+          <a-layout>
+            <SiderMenu
+              :logo="logo"
+              :theme="setting.navTheme"
+              :onCollapse="handleMenuCollapse"
+              :menuData="menuData"
+              :isMobile="isMobile"
+              :collapsed="collapsed"
+            />
+            <a-layout :style="layoutStyle">
+              <Header
+                :menuData="menuData"
+                :handleMenuCollapse="handleMenuCollapse"
+                :logo="logo"
+                :isMobile="isMobile"
+              />
+              <a-layout-content :class="$style.content" :style="contentStyle">
+                <router-view />
+              </a-layout-content>
+              <Footer />
+            </a-layout>
+          </a-layout>
+          <Authorized :authority="['admin']">
+            <SettingDrawer />
+          </Authorized>
         </div>
-        <SiderMenu :theme="navTheme" :collapsed="collapsed" />
-      </a-layout-sider>
-      <a-layout>
-        <a-layout-header style="background: #fff; padding: 0">
-          <a-icon
-            v-auth="['admin']"
-            class="trigger"
-            :type="collapsed ? 'menu-unfold' : 'menu-fold'"
-            @click="collapsed = !collapsed"
-          ></a-icon>
-          <Header />
-        </a-layout-header>
-        <a-layout-content style="margin: 24px 24px 0">
-          <router-view></router-view>
-        </a-layout-content>
-        <a-layout-footer style="text-align: center">
-          <Footer />
-        </a-layout-footer>
-      </a-layout>
-    </a-layout>
-    <Authorized :authority="['admin']">
-      <SettingDrawer />
-    </Authorized>
-  </div>
+      </Provider>
+    </ContainerQuery>
+  </Media>
 </template>
 
 <script>
+import { mapState, mapActions, mapMutations } from "vuex";
+import { ContainerQuery } from "vue-container-query";
+import classNames from "classnames";
+import Media from "@/utils/VueMedia";
+import Context from "./MenuContext";
+import SiderMenu from "@/components/SiderMenu";
+import logo from "@/assets/logo.svg";
+
 import Header from "./Header";
 import Footer from "../components/GlobalFooter";
-import SiderMenu from "./SiderMenu";
 import SettingDrawer from "../components/SettingDrawer";
-import Logo from "@/assets/logo.svg";
+
+const Provider = Context.Provider;
+const query = {
+  "screen-xs": {
+    maxWidth: 575
+  },
+  "screen-sm": {
+    minWidth: 576,
+    maxWidth: 767
+  },
+  "screen-md": {
+    minWidth: 768,
+    maxWidth: 991
+  },
+  "screen-lg": {
+    minWidth: 992,
+    maxWidth: 1199
+  },
+  "screen-xl": {
+    minWidth: 1200,
+    maxWidth: 1599
+  },
+  "screen-xxl": {
+    minWidth: 1600
+  }
+};
 
 export default {
   data() {
     return {
-      collapsed: false
+      query,
+      params: {},
+      logo
     };
   },
   computed: {
-    navTheme() {
-      return this.$route.query.navTheme || "dark";
+    ...mapState("global", {
+      collapsed: state => state.collapsed
+    }),
+    ...mapState("setting", {
+      setting: state => state
+    }),
+    ...mapState("menu", {
+      menuData: state => state.menuData,
+      breadcrumbNameMap: state => state.breadcrumbNameMap
+    }),
+    className() {
+      return classNames(this.params);
     },
-    navLayout() {
-      return this.$route.query.navLayout || "left";
+    isTop() {
+      return this.setting.layout === "topmenu";
+    },
+    layoutStyle() {
+      return {
+        ...this.getLayoutStyle(),
+        minHeight: "100vh"
+      };
+    },
+    contentStyle() {
+      return !this.setting.fixedHeader ? { paddingTop: 0 } : {};
     }
   },
   components: {
@@ -65,52 +113,41 @@ export default {
     Footer,
     SiderMenu,
     SettingDrawer,
-    Logo
+    Media,
+    ContainerQuery,
+    Provider
+  },
+  mounted() {
+    const { children, path, authority } = this.$router.options.routes[1];
+    this.getMenuData({ routes: children, path, authority });
+  },
+  methods: {
+    ...mapActions("menu", ["getMenuData"]),
+    ...mapMutations("global", ["changeLayoutCollapsed"]),
+    getContext() {
+      const { location, breadcrumbNameMap } = this;
+      return {
+        location,
+        breadcrumbNameMap
+      };
+    },
+
+    getLayoutStyle() {
+      const { fixSiderbar, layout } = this.setting;
+      const { collapsed, isMobile } = this;
+      if (fixSiderbar && layout !== "topmenu" && !isMobile) {
+        return {
+          paddingLeft: collapsed ? "80px" : "256px"
+        };
+      }
+      return null;
+    },
+
+    handleMenuCollapse(collapsed) {
+      this.changeLayoutCollapsed(collapsed);
+    }
   }
 };
 </script>
 
-<style scoped lang="less">
-.trigger {
-  padding: 0 20px;
-  line-height: 64px;
-  font-size: 20px;
-
-  &:hover {
-    background: #eeeeee;
-  }
-}
-
-.logo {
-  position: relative;
-  height: 64px;
-  padding-left: 24px;
-  overflow: hidden;
-  line-height: 64px;
-  background: #002140;
-
-  svg {
-    width: 32px;
-    height: 32px;
-    display: inline-block;
-    vertical-align: middle;
-  }
-
-  h1 {
-    display: inline-block;
-    margin: 0 0 0 12px;
-    font-size: 20px;
-    font-family: Avenir, "Helvetica Neue", Arial, Helvetica, sans-serif;
-    font-weight: 600;
-    vertical-align: middle;
-  }
-}
-
-.nav-theme-dark {
-  /deep/ .logo {
-    h1 {
-      color: #ffffff;
-    }
-  }
-}
-</style>
+<style lang="less" src="./BasicLayout.less" module></style>
