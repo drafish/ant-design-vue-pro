@@ -5,6 +5,7 @@ import HeaderDropdown from "../HeaderDropdown";
 import styles from "./index.less";
 
 const SelectLang = {
+  name: "SelectLang",
   props: {
     className: String
   },

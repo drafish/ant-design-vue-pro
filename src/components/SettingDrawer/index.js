@@ -10,6 +10,7 @@ import {
   Alert,
   Tooltip
 } from "ant-design-vue";
+import { cloneElement } from "ant-design-vue/es/_util/vnode";
 import { mapState, mapMutations } from "vuex";
 import { formatMessage } from "@/locales";
 import omit from "lodash/omit";
@@ -139,7 +140,7 @@ const SettingDrawer = {
     },
 
     renderLayoutSettingItem(item) {
-      const action = Object.assign(item.action, {
+      const action = cloneElement(item.action, {
         disabled: item.disabled
       });
       return (
