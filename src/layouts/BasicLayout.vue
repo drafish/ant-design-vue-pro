@@ -5,6 +5,7 @@
         <div :class="className">
           <a-layout>
             <SiderMenu
+              v-if="!(isTop && !isMobile)"
               :logo="logo"
               :theme="setting.navTheme"
               :onCollapse="handleMenuCollapse"
@@ -45,7 +46,7 @@ import SiderMenu from "@/components/SiderMenu";
 import logo from "@/assets/logo.svg";
 
 import Header from "./Header";
-import Footer from "../components/GlobalFooter";
+import Footer from "./Footer";
 import SettingDrawer from "../components/SettingDrawer";
 
 const Provider = Context.Provider;
@@ -126,9 +127,11 @@ export default {
     const { children, path, authority } = this.$router.options.routes[1];
     this.getMenuData({ routes: children, path, authority });
     this.getSetting();
+    this.fetchCurrent();
   },
   methods: {
     ...mapActions("menu", ["getMenuData"]),
+    ...mapActions("user", ["fetchCurrent"]),
     ...mapMutations("setting", ["getSetting"]),
     ...mapMutations("global", ["changeLayoutCollapsed"]),
     getContext() {

@@ -2,32 +2,38 @@ import request from "../../utils/request";
 
 const state = {
   collapsed: false,
-  notices: [],
-  fetchingStatus: {
-    notice: false
-  },
-  notifyCount: 0,
-  unreadCount: 0
+  notices: []
 };
 
 const actions = {
   async fetchNotices({ commit, state }) {
-    commit("changeFetchStatus", { payload: { notice: true } });
-    const res = await request({
+    const data = (await request({
       url: "/api/notices",
       method: "GET"
-    });
-    const { data = [] } = res;
-    commit("saveNotices", { payload: data });
+    })).data;
+    commit("saveNotices", data);
     const unreadCount = state.notices.filter(item => !item.read).length;
-    commit("changeNotifyCount", { unreadCount, notifyCount: data.length });
-    commit("changeFetchStatus", { payload: { notice: false } });
+    commit(
+      "user/changeNotifyCount",
+      {
+        totalCount: data.length,
+        unreadCount
+      },
+      { root: true }
+    );
   },
   clearNotices({ commit, state }, payload) {
-    commit("saveClearedNotices", { payload });
+    commit("saveClearedNotices", payload);
     const count = state.notices.length;
     const unreadCount = state.notices.filter(item => !item.read).length;
-    commit("changeNotifyCount", { unreadCount, notifyCount: count });
+    commit(
+      "user/changeNotifyCount",
+      {
+        totalCount: count,
+        unreadCount
+      },
+      { root: true }
+    );
   },
   changeNoticeReadState({ commit, state }, payload) {
     const notices = state.notices.map(item => {
@@ -37,33 +43,35 @@ const actions = {
       }
       return notice;
     });
-    commit("saveNotices", { payload: notices });
-    commit("changeNotifyCount", {
-      notifyCount: notices.length,
-      unreadCount: notices.filter(item => !item.read).length
-    });
+
+    commit("saveNotices", notices);
+    commit(
+      "user/changeNotifyCount",
+      {
+        totalCount: notices.length,
+        unreadCount: notices.filter(item => !item.read).length
+      },
+      { root: true }
+    );
   }
 };
 
 const mutations = {
   changeLayoutCollapsed(state, payload) {
-    state.collapsed = payload;
+    Object.assign(state, {
+      collapsed: payload
+    });
   },
-  changeFetchStatus(state, { payload }) {
-    state.fetchingStatus = {
-      ...state.fetchingStatus,
-      ...payload
-    };
+  saveNotices(state, payload) {
+    console.log(payload);
+    Object.assign(state, {
+      notices: payload
+    });
   },
-  saveClearedNotices(state, { payload }) {
-    state.notices = state.notices.filter(item => item.type !== payload);
-  },
-  saveNotices(state, { payload }) {
-    state.notices = payload;
-  },
-  changeNotifyCount(state, { notifyCount, unreadCount }) {
-    state.notifyCount = notifyCount;
-    state.unreadCount = unreadCount;
+  saveClearedNotices(state, payload) {
+    Object.assign(state, {
+      notices: state.notices.filter(item => item.type !== payload)
+    });
   }
 };
 
