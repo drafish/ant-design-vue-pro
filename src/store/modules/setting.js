@@ -91,7 +91,6 @@ export default {
       }
       updateColorWeak(colorWeak);
       Object.assign(state, {
-        ...state,
         ...setting
       });
     },
@@ -125,7 +124,6 @@ export default {
       updateColorWeak(colorWeak);
       window.history.replaceState(null, "setting", urlParams.href);
       Object.assign(state, {
-        ...state,
         ...payload
       });
     }

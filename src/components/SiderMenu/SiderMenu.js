@@ -16,15 +16,6 @@ const SiderMenu = {
     };
   },
 
-  watch: {
-    "flatMenuKeys.length": function() {
-      this.openKeys = getDefaultCollapsedSubMenus(this.$props);
-    },
-    "location.pathname": function() {
-      this.openKeys = getDefaultCollapsedSubMenus(this.$props);
-    }
-  },
-
   props: [
     "logo",
     "fixSiderbar",
@@ -41,6 +32,21 @@ const SiderMenu = {
 
   mounted() {
     firstMount = false;
+  },
+
+  beforeUpdate() {
+    const props = this.$props;
+    const { pathname, flatMenuKeysLen } = this;
+    if (
+      location.pathname !== pathname ||
+      props.flatMenuKeys.length !== flatMenuKeysLen
+    ) {
+      Object.assign(this, {
+        pathname: location.pathname,
+        flatMenuKeysLen: props.flatMenuKeys.length,
+        openKeys: getDefaultCollapsedSubMenus(props)
+      });
+    }
   },
 
   methods: {
@@ -99,11 +105,10 @@ const SiderMenu = {
           </a>
         </div>
         <BaseMenu
-          {...{ props: this.$props }}
+          {...{ props: { ...this.$props, ...defaultProps } }}
           mode="inline"
           handleOpenChange={this.handleOpenChange}
           style={{ padding: "16px 0", width: "100%" }}
-          {...{ props: defaultProps }}
         />
       </Sider>
     );

@@ -34,8 +34,21 @@ function getLocale() {
 }
 
 function formatMessage() {
-  return i18n.t(...arguments);
+  // 复制黏贴后懒得改了，兼容下react pro中的写法
+  if (typeof arguments[0] === "object") {
+    return i18n.t(arguments[0].id);
+  } else {
+    return i18n.t(...arguments);
+  }
 }
 
-export { setLocale, getLocale, formatMessage };
+const FormattedMessage = {
+  functional: true,
+  render(h, ctx) {
+    const { id } = ctx.props;
+    return <span>{i18n.t(id)}</span>;
+  }
+};
+
+export { setLocale, getLocale, formatMessage, FormattedMessage };
 export default i18n;
