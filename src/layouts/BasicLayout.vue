@@ -22,14 +22,12 @@
                 :isMobile="isMobile"
               />
               <a-layout-content :class="$style.content" :style="contentStyle">
-                <router-view />
+                <Authorized><router-view /></Authorized>
               </a-layout-content>
               <Footer />
             </a-layout>
           </a-layout>
-          <!-- <Authorized :authority="['admin']">
-            <SettingDrawer />
-          </Authorized> -->
+
           <VNodes :vnodes="renderSettingDrawer()" />
         </div>
       </Provider>
@@ -44,11 +42,12 @@ import classNames from "classnames";
 import Media from "@/utils/VueMedia";
 import Context from "./MenuContext";
 import SiderMenu from "@/components/SiderMenu";
+import SettingDrawer from "@/components/SettingDrawer";
 import logo from "@/assets/logo.svg";
+import Authorized from "@/views/Authorized.js";
 
 import Header from "./Header";
 import Footer from "./Footer";
-import SettingDrawer from "../components/SettingDrawer";
 
 const Provider = Context.Provider;
 const query = {
@@ -119,7 +118,7 @@ export default {
     Header,
     Footer,
     SiderMenu,
-    // SettingDrawer,
+    Authorized,
     Media,
     ContainerQuery,
     Provider

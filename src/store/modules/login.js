@@ -2,6 +2,7 @@ import router from "@/router";
 import { parse } from "query-string";
 import request from "@/utils/request";
 import { setAuthority } from "@/utils/authority";
+import { reloadAuthorized } from "@/utils/Authorized";
 
 const state = {
   status: undefined
@@ -19,6 +20,7 @@ const actions = {
     commit("changeLoginStatus", response);
     // Login successfully
     if (response.status === "ok") {
+      reloadAuthorized();
       const urlParams = new URL(window.location.href);
       let redirect = parse(location.search).redirect;
       if (redirect) {
@@ -40,6 +42,7 @@ const actions = {
       status: false,
       currentAuthority: "guest"
     });
+    reloadAuthorized();
     const redirect = parse(location.search).redirect;
     // redirect
     if (window.location.pathname !== "/user/login" && !redirect) {

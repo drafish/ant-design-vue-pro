@@ -1,11 +1,11 @@
 import memoizeOne from "memoize-one";
 import isEqual from "lodash/isEqual";
 import { formatMessage } from "@/locales";
-// import Authorized from "@/utils/Authorized";
+import Authorized from "@/utils/Authorized";
 import { menu } from "@/defaultSettings";
-import { proCheck } from "@/utils/auth";
+// import { proCheck } from "@/utils/auth";
 
-// const { check } = Authorized;
+const { check } = Authorized;
 
 // Conversion router to menu.
 function formatter(data, parentAuthority, parentName) {
@@ -72,7 +72,7 @@ const filterMenuData = menuData => {
   }
   return menuData
     .filter(item => item.name && !item.hideInMenu)
-    .map(item => proCheck(item.authority, getSubMenu(item)))
+    .map(item => check(item.authority, getSubMenu(item)))
     .filter(item => item);
 };
 /**
