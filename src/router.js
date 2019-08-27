@@ -152,6 +152,15 @@ const router = new Router({
                 import(
                   /* webpackChunkName: "exception" */ "@/views/Exception/500"
                 )
+            },
+            {
+              path: "/exception/trigger",
+              name: "trigger",
+              hideInMenu: true,
+              component: () =>
+                import(
+                  /* webpackChunkName: "exception" */ "@/views/Exception/TriggerException"
+                )
             }
           ]
         },

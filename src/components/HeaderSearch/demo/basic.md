@@ -6,7 +6,7 @@ title: 全局搜索
 通常放置在导航工具条右侧。（点击搜索图标预览效果）
 
 ```jsx
-import HeaderSearch from 'ant-design-pro/lib/HeaderSearch';
+import HeaderSearch from 'ant-design-vue-pro/lib/HeaderSearch';
 
 export default {
   render() {

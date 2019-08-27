@@ -6,8 +6,8 @@ title: 带浮层卡片
 点击展开通知卡片，展现多种类型的通知，通常放在导航工具栏。
 
 ```jsx
-import NoticeIcon from 'ant-design-pro/lib/NoticeIcon';
-import { Tag } from 'antd';
+import NoticeIcon from 'ant-design-vue-pro/lib/NoticeIcon';
+import { Tag } from 'ant-design-vue';
 
 const data = [
   {

@@ -7,7 +7,7 @@ iframe: 400
 基本页脚。
 
 ```jsx
-import GlobalFooter from 'ant-design-pro/lib/GlobalFooter';
+import GlobalFooter from 'ant-design-vue-pro/lib/GlobalFooter';
 import { Icon } from 'ant-design-vue';
 
 export default {
@@ -21,7 +21,7 @@ export default {
       {
         key: 'github',
         title: <Icon type="github" />,
-        href: 'https://github.com/ant-design/ant-design-pro',
+        href: 'https://github.com/vueComponent/ant-design-vue-pro',
         blankTarget: true,
       },
       {

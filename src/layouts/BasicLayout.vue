@@ -12,6 +12,7 @@
               :menuData="menuData"
               :isMobile="isMobile"
               :collapsed="collapsed"
+              :fixSiderbar="setting.fixSiderbar"
             />
             <a-layout :style="layoutStyle">
               <Header

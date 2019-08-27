@@ -109,6 +109,7 @@ const SiderMenu = {
           mode="inline"
           handleOpenChange={this.handleOpenChange}
           style={{ padding: "16px 0", width: "100%" }}
+          pathname={location.pathname}
         />
       </Sider>
     );

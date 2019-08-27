@@ -6,13 +6,14 @@ export default {
   name: "HeaderDropdown",
   functional: true,
   render(h, ctx) {
-    const { children, props } = ctx;
-    const { overlayClassName, visibleChange = () => {}, ...rest } = props;
+    const { children } = ctx;
+    const { directives } = ctx.data;
+    const { overlayClassName, visibleChange = () => {}, ...rest } = ctx.props;
 
     return (
       <Dropdown
         overlayClassName={classNames(styles.container, overlayClassName)}
-        {...{ props: rest, on: { visibleChange } }}
+        {...{ props: rest, on: { visibleChange }, directives }}
       >
         {children}
       </Dropdown>

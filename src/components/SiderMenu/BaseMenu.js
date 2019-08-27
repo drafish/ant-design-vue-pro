@@ -22,7 +22,8 @@ const BaseMenu = {
     "layout",
     "handleOpenChange",
     // "style",
-    "menuData"
+    "menuData",
+    "pathname"
   ],
 
   methods: {
@@ -67,7 +68,7 @@ const BaseMenu = {
     getSelectedMenuKeys(pathname) {
       const { flatMenuKeys } = this.$props;
       if (flatMenuKeys.length) {
-        return urlToList(pathname).map(itemPath =>
+        return urlToList(pathname).filter(itemPath =>
           getMenuMatches(flatMenuKeys, itemPath).pop()
         );
       } else {
@@ -130,12 +131,12 @@ const BaseMenu = {
           </a>
         );
       }
-      const { isMobile, onCollapse } = this.$props;
+      const { isMobile, onCollapse, pathname } = this.$props;
       return (
         <router-link
           to={itemPath}
           target={target}
-          replace={itemPath === location.pathname}
+          replace={itemPath === pathname}
           onClick={
             isMobile
               ? () => {
@@ -177,10 +178,10 @@ const BaseMenu = {
       className,
       collapsed,
       fixedHeader,
-      layout
+      layout,
+      pathname
     } = this.$props;
 
-    const pathname = location.pathname;
     // if pathname can't match, use the nearest parent's key
     let selectedKeys = this.getSelectedMenuKeys(pathname);
     if (!selectedKeys.length && openKeys) {

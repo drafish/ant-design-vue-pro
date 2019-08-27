@@ -6,6 +6,9 @@ import { title } from "../../defaultSettings";
 
 const TopNavHeader = {
   name: "TopNavHeader",
+  data() {
+    return { pathname: location.pathname };
+  },
   props: [
     "contentWidth",
     "menuData",
@@ -70,7 +73,10 @@ const TopNavHeader = {
                 {...{ props: this.$props }}
                 flatMenuKeys={flatMenuKeys}
                 className={styles.menu}
-                handleOpenChange={() => {}}
+                handleOpenChange={() => {
+                  this.pathname = location.pathname;
+                }}
+                pathname={this.pathname}
               />
             </div>
           </div>

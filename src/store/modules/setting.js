@@ -85,7 +85,6 @@ export default {
         }
       });
       const { primaryColor, colorWeak } = setting;
-      console.log(colorWeak);
       if (state.primaryColor !== primaryColor) {
         updateTheme(primaryColor);
       }

@@ -6,6 +6,7 @@ import login from "./modules/login";
 import menu from "./modules/menu";
 import setting from "./modules/setting";
 import user from "./modules/user";
+import error from "./modules/error";
 
 Vue.use(Vuex);
 
@@ -15,6 +16,7 @@ export default new Vuex.Store({
     login,
     menu,
     setting,
+    error,
     user,
     form,
     global

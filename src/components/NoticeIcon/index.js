@@ -14,6 +14,7 @@ export default {
   },
 
   props: {
+    className: String,
     count: {
       type: Number
     },
@@ -66,8 +67,7 @@ export default {
       const { clickClose } = item;
       itemClick(item, tabProps);
       if (clickClose) {
-        // TODO fix this bug
-        // this.popover.click();
+        this.popover.$el.click();
       }
     },
 
@@ -75,7 +75,7 @@ export default {
       const { clear, clearClose } = this.$props;
       clear(name);
       if (clearClose) {
-        // this.popover.click();
+        this.popover.$el.click();
       }
     },
 
