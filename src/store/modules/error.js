@@ -1,4 +1,4 @@
-import request from "@/utils/request";
+import queryError from "@/services/error";
 
 export default {
   namespaced: true,
@@ -9,7 +9,7 @@ export default {
 
   actions: {
     async query({ commit }, payload) {
-      await request(`/api/${payload}`);
+      await queryError(payload);
       commit("trigger", payload);
     }
   },

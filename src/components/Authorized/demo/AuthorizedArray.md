@@ -11,13 +11,15 @@ Use Array as a parameter
 import RenderAuthorized from 'ant-design-vue-pro/lib/Authorized';
 import { Alert } from 'ant-design-vue';
 
-const Authorized = RenderAuthorized('user');
-const noMatch = <Alert message="No permission." type="error" showIcon />;
-
-ReactDOM.render(
-  <Authorized authority={['user', 'admin']} noMatch={noMatch}>
-    <Alert message="Use Array as a parameter passed!" type="success" showIcon />
-  </Authorized>,
-  mountNode
-);
+export default {
+  render() {
+    const Authorized = RenderAuthorized('user');
+    const noMatch = <Alert message="No permission." type="error" showIcon />;
+    return (
+      <Authorized authority={['user', 'admin']} noMatch={noMatch}>
+        <Alert message="Use Array as a parameter passed!" type="success" showIcon />
+      </Authorized>
+    )
+  }
+}
 ```

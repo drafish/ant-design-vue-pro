@@ -25,15 +25,6 @@ order: 15
 | authority | 准入权限/权限判断 | `string | array | Promise | (currentAuthority) => boolean | Promise` | - |
 | noMatch | 权限异常渲染元素，权限判断不通过时展示 | ReactNode | - |
 
-### Authorized.AuthorizedRoute
-
-| 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| authority | 准入权限/权限判断 | `string | array | Promise | (currentAuthority) => boolean | Promise` | - |
-| redirectPath | 权限异常时重定向的页面路由 | string | - |
-
-其余参数与 `Route` 相同。
-
 ### Authorized.Secured
 
 注解方式，`@Authorized.Secured(authority, error)`

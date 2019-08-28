@@ -1,6 +1,6 @@
 import router from "@/router";
 import { parse } from "query-string";
-import request from "@/utils/request";
+import { fakeAccountLogin, getFakeCaptcha, fakeRegister } from "@/services/api";
 import { setAuthority } from "@/utils/authority";
 import { reloadAuthorized } from "@/utils/Authorized";
 
@@ -11,11 +11,7 @@ const state = {
 const actions = {
   async login({ commit }, payload) {
     console.log(payload);
-    const response = (await request({
-      url: "/api/login/account",
-      method: "POST",
-      data: payload
-    })).data;
+    const response = await fakeAccountLogin(payload);
     console.log(response);
     commit("changeLoginStatus", response);
     // Login successfully
@@ -56,11 +52,7 @@ const actions = {
   },
   async register({ commit }, payload) {
     console.log(payload);
-    const response = (await request({
-      url: "/api/register",
-      method: "POST",
-      data: payload
-    })).data;
+    const response = await fakeRegister(payload);
     console.log(response);
     if (response.status === "ok") {
       commit("changeLoginStatus", response);
@@ -75,10 +67,7 @@ const actions = {
   // eslint-disable-next-line no-unused-vars
   async getCaptcha({ commit }, payload) {
     console.log(payload);
-    await request({
-      url: `/api/captcha?mobile=${payload.mobile}`,
-      method: "GET"
-    });
+    await getFakeCaptcha(payload.mobile);
   }
 };
 

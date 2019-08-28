@@ -1,4 +1,4 @@
-import request from "../../utils/request";
+import { queryNotices } from "@/services/api";
 
 const state = {
   collapsed: false,
@@ -7,10 +7,7 @@ const state = {
 
 const actions = {
   async fetchNotices({ commit, state }) {
-    const data = (await request({
-      url: "/api/notices",
-      method: "GET"
-    })).data;
+    const data = await queryNotices();
     commit("saveNotices", data);
     const unreadCount = state.notices.filter(item => !item.read).length;
     commit(

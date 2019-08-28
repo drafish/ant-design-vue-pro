@@ -9,19 +9,21 @@ Use Function as a parameter
 
 ```jsx
 import RenderAuthorized from 'ant-design-vue-pro/lib/Authorized';
-import { Alert } from 'antd';
+import { Alert } from 'ant-design-vue';
 
-const Authorized = RenderAuthorized('user');
-const noMatch = <Alert message="No permission." type="error" showIcon />;
+export default {
+  render() {
+    const Authorized = RenderAuthorized('user');
+    const noMatch = <Alert message="No permission." type="error" showIcon />;
 
-const havePermission = () => {
-  return false;
-};
-
-ReactDOM.render(
-  <Authorized authority={havePermission} noMatch={noMatch}>
-    <Alert message="Use Function as a parameter passed!" type="success" showIcon />
-  </Authorized>,
-  mountNode
-);
+    const havePermission = () => {
+      return false;
+    };
+    return (
+      <Authorized authority={havePermission} noMatch={noMatch}>
+        <Alert message="Use Function as a parameter passed!" type="success" showIcon />
+      </Authorized>
+    )
+  }
+}
 ```

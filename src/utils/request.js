@@ -57,10 +57,10 @@ const errorHandler = error => {
   }
 };
 
-function request(options) {
-  return axios(options)
+function request(url, options = {}) {
+  return axios(Object.assign(options, { url }))
     .then(res => {
-      return res;
+      return res.data;
     })
     .catch(errorHandler);
 }

@@ -9,20 +9,14 @@ secured demo used
 
 ```jsx
 import RenderAuthorized from 'ant-design-vue-pro/lib/Authorized';
-import { Alert } from 'antd';
+import { Alert } from 'ant-design-vue';
 
 const { Secured } = RenderAuthorized('user');
 
-@Secured('admin')
-class TestSecuredString extends React.Component {
+const TestSecuredString = {
   render() {
     return <Alert message="user Passed!" type="success" showIcon />;
   }
 }
-ReactDOM.render(
-  <div>
-    <TestSecuredString />
-  </div>,
-  mountNode
-);
+export default Secured('admin')(TestSecuredString)
 ```

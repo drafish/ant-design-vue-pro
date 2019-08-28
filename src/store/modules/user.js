@@ -1,4 +1,4 @@
-import request from "@/utils/request";
+import { query as queryUsers, queryCurrent } from "@/services/user";
 export default {
   namespaced: true,
 
@@ -9,11 +9,11 @@ export default {
 
   actions: {
     async fetch({ commit }) {
-      const response = (await request("/api/users")).data;
+      const response = await queryUsers();
       commit("save", response);
     },
     async fetchCurrent({ commit }) {
-      const response = (await request("/api/currentUser")).data;
+      const response = await queryCurrent();
       commit("saveCurrentUser", response);
     }
   },

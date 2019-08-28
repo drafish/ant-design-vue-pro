@@ -11,15 +11,17 @@ Basic use
 import RenderAuthorized from 'ant-design-vue-pro/lib/Authorized';
 import { Alert } from 'ant-design-vue';
 
-const Authorized = RenderAuthorized('user');
-const noMatch = <Alert message="No permission." type="error" showIcon />;
-
-ReactDOM.render(
-  <div>
-    <Authorized authority="admin" noMatch={noMatch}>
-      <Alert message="user Passed!" type="success" showIcon />
-    </Authorized>
-  </div>,
-  mountNode
-);
+export default {
+  render() {
+    const Authorized = RenderAuthorized('user');
+    const noMatch = <Alert message="No permission." type="error" showIcon />;
+    return (
+      <div>
+        <Authorized authority="admin" noMatch={noMatch}>
+          <Alert message="user Passed!" type="success" showIcon />
+        </Authorized>
+      </div>
+    )
+  }
+}
 ```

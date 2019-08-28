@@ -26,8 +26,7 @@ export default {
   },
   methods: {
     getChartData() {
-      request({
-        url: "/api/dashboard/chart",
+      request("/api/dashboard/chart", {
         method: "get",
         params: { ID: 12345 }
       }).then(response => {
@@ -44,7 +43,7 @@ export default {
             {
               name: "销量",
               type: "bar",
-              data: response.data
+              data: response
             }
           ]
         };
