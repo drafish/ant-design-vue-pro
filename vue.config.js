@@ -28,12 +28,12 @@ module.exports = {
             return `antd-pro${arr.join("-")}-${localName}`.replace(/--/g, "-");
           }
           return localName;
-        }
+        },
       },
       less: {
-        javascriptEnabled: true
-      }
-    }
+        javascriptEnabled: true,
+      },
+    },
   },
   chainWebpack: webpackPlugin,
   configureWebpack: {
@@ -42,15 +42,15 @@ module.exports = {
       new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
       new webpack.DefinePlugin({
         ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION: JSON.stringify(
-          ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION || "" // preview.pro.ant.design only do not use in your production ; preview.pro.ant.design 专用环境变量，请不要在你的项目中使用它。
-        )
-      })
+          ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION || "", // preview.pro.ant.design only do not use in your production ; preview.pro.ant.design 专用环境变量，请不要在你的项目中使用它。
+        ),
+      }),
     ],
     resolve: {
       alias: {
         // "@ant-design/icons/lib/dist$": path.resolve(__dirname, "./src/icons.js")
-      }
-    }
+      },
+    },
   },
   // chainWebpack: config => {
   //   const svgRule = config.module.rule("svg");
@@ -71,8 +71,8 @@ module.exports = {
     },
     proxy: {
       "/api": {
-        target: "http://localhost:3000"
-      }
-    }
-  }
+        target: "http://localhost:3000",
+      },
+    },
+  },
 };

@@ -7,12 +7,12 @@ export default {
   props: {
     target: null,
     onEnd: Function,
-    format: Function
+    format: Function,
   },
   data() {
     return {
       lastTime: this.initTime(),
-      timer: null
+      timer: null,
     };
   },
   mounted() {
@@ -22,7 +22,7 @@ export default {
     realTime() {
       const format = this.format ? this.format : this.defaultFormat;
       return format(this.lastTime);
-    }
+    },
   },
   methods: {
     fixedZero(val) {
@@ -67,8 +67,8 @@ export default {
       const s = Math.floor((time - h * hours - m * minutes) / 1000);
 
       return `${this.fixedZero(h)}:${this.fixedZero(m)}:${this.fixedZero(s)}`;
-    }
-  }
+    },
+  },
 };
 </script>
 

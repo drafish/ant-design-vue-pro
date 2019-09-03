@@ -19,7 +19,7 @@ const StandardTable = {
     "selectedRows",
     "loading",
     "selectRow",
-    "change"
+    "change",
   ],
   data() {
     const { columns } = this.$props;
@@ -27,7 +27,7 @@ const StandardTable = {
 
     return {
       selectedRowKeys: [],
-      needTotalList
+      needTotalList,
     };
   },
 
@@ -45,8 +45,8 @@ const StandardTable = {
         ...item,
         total: selectedRows.reduce(
           (sum, val) => sum + parseFloat(val[item.dataIndex], 10),
-          0
-        )
+          0,
+        ),
       }));
       const { selectRow } = this.$props;
       if (selectRow) {
@@ -65,7 +65,7 @@ const StandardTable = {
 
     cleanSelectedKeys() {
       this.handleRowSelectChange([], []);
-    }
+    },
   },
 
   render() {
@@ -76,7 +76,7 @@ const StandardTable = {
     const paginationProps = {
       showSizeChanger: true,
       showQuickJumper: true,
-      ...pagination
+      ...pagination,
     };
 
     const rowSelection = {
@@ -84,9 +84,9 @@ const StandardTable = {
       onChange: this.handleRowSelectChange,
       getCheckboxProps: record => ({
         props: {
-          disabled: record.disabled
-        }
-      })
+          disabled: record.disabled,
+        },
+      }),
     };
 
     return (
@@ -129,7 +129,7 @@ const StandardTable = {
         />
       </div>
     );
-  }
+  },
 };
 
 export default StandardTable;

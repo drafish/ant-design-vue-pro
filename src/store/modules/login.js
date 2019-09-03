@@ -5,7 +5,7 @@ import { setAuthority } from "@/utils/authority";
 import { reloadAuthorized } from "@/utils/Authorized";
 
 const state = {
-  status: undefined
+  status: undefined,
 };
 
 const actions = {
@@ -36,7 +36,7 @@ const actions = {
   async logout({ commit }) {
     commit("changeLoginStatus", {
       status: false,
-      currentAuthority: "guest"
+      currentAuthority: "guest",
     });
     reloadAuthorized();
     const redirect = parse(location.search).redirect;
@@ -45,8 +45,8 @@ const actions = {
       router.replace({
         path: "/user/login",
         query: {
-          redirect: window.location.href
-        }
+          redirect: window.location.href,
+        },
       });
     }
   },
@@ -59,8 +59,8 @@ const actions = {
       router.push({
         name: "register.result",
         params: {
-          account: payload.mail
-        }
+          account: payload.mail,
+        },
       });
     }
   },
@@ -68,19 +68,19 @@ const actions = {
   async getCaptcha({ commit }, payload) {
     console.log(payload);
     await getFakeCaptcha(payload.mobile);
-  }
+  },
 };
 
 const mutations = {
   changeLoginStatus(state, payload) {
     setAuthority(payload.currentAuthority);
     state.status = payload.status;
-  }
+  },
 };
 
 export default {
   namespaced: true,
   state,
   actions,
-  mutations
+  mutations,
 };

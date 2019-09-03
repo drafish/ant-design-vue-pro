@@ -38,19 +38,19 @@ const Exception = {
                 linkElement,
                 {
                   props: {
-                    to: redirect
+                    to: redirect,
                   },
                   attrs: {
-                    href: redirect
-                  }
+                    href: redirect,
+                  },
                 },
-                [<Button type="primary">{backText}</Button>]
+                [<Button type="primary">{backText}</Button>],
               )}
           </div>
         </div>
       </div>
     );
-  }
+  },
 };
 
 export default Exception;

@@ -14,7 +14,7 @@ const BlockChecbox = {
               <div
                 class={style.selectIcon}
                 style={{
-                  display: value === item.key ? "block" : "none"
+                  display: value === item.key ? "block" : "none",
                 }}
               >
                 <Icon type="check" />
@@ -24,7 +24,7 @@ const BlockChecbox = {
         ))}
       </div>
     );
-  }
+  },
 };
 
 export default BlockChecbox;

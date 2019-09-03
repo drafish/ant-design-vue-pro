@@ -36,5 +36,5 @@ export default {
   "validation.phone-number.required": "Por favor insira seu telefone!",
   "validation.phone-number.wrong-format": "Formato de telefone errado!",
   "validation.verification-code.required":
-    "Por favor insira seu código de verificação!"
+    "Por favor insira seu código de verificação!",
 };

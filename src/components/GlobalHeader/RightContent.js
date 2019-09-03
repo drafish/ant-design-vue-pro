@@ -6,7 +6,7 @@ import {
   Icon,
   Avatar,
   Tooltip,
-  message
+  message,
 } from "ant-design-vue";
 import { mapActions } from "vuex";
 import moment from "moment";
@@ -26,7 +26,7 @@ const GlobalHeaderRight = {
     "onNoticeVisibleChange",
     "onMenuClick",
     "onNoticeClear",
-    "theme"
+    "theme",
   ],
   methods: {
     ...mapActions("global", ["changeNoticeReadState"]),
@@ -48,7 +48,7 @@ const GlobalHeaderRight = {
             todo: "",
             processing: "blue",
             urgent: "red",
-            doing: "gold"
+            doing: "gold",
           }[newNotice.status];
           newNotice.extra = (
             <Tag color={color} style={{ marginRight: 0 }}>
@@ -77,7 +77,7 @@ const GlobalHeaderRight = {
     changeReadState(clickedItem) {
       const { id } = clickedItem;
       this.changeNoticeReadState(id);
-    }
+    },
   },
 
   render() {
@@ -87,7 +87,7 @@ const GlobalHeaderRight = {
       onNoticeVisibleChange,
       onMenuClick,
       onNoticeClear,
-      theme
+      theme,
     } = this.$props;
     const menu = (
       <Menu class={styles.menu} selectedKeys={[]} onClick={onMenuClick}>
@@ -133,7 +133,7 @@ const GlobalHeaderRight = {
           dataSource={[
             formatMessage({ id: "component.globalHeader.search.example1" }),
             formatMessage({ id: "component.globalHeader.search.example2" }),
-            formatMessage({ id: "component.globalHeader.search.example3" })
+            formatMessage({ id: "component.globalHeader.search.example3" }),
           ]}
           search={value => {
             console.log('input', value); // eslint-disable-line
@@ -165,10 +165,10 @@ const GlobalHeaderRight = {
             clear: formatMessage({ id: "component.noticeIcon.clear" }),
             viewMore: formatMessage({ id: "component.noticeIcon.view-more" }),
             notification: formatMessage({
-              id: "component.globalHeader.notification"
+              id: "component.globalHeader.notification",
             }),
             message: formatMessage({ id: "component.globalHeader.message" }),
-            event: formatMessage({ id: "component.globalHeader.event" })
+            event: formatMessage({ id: "component.globalHeader.event" }),
           }}
           clear={onNoticeClear}
           popupVisibleChange={onNoticeVisibleChange}
@@ -180,7 +180,7 @@ const GlobalHeaderRight = {
             list={noticeData.notification}
             title="notification"
             emptyText={formatMessage({
-              id: "component.globalHeader.notification.empty"
+              id: "component.globalHeader.notification.empty",
             })}
             emptyImage="https://gw.alipayobjects.com/zos/rmsportal/wAhyIChODzsoKIOBHcBk.svg"
             showViewMore
@@ -190,7 +190,7 @@ const GlobalHeaderRight = {
             list={noticeData.message}
             title="message"
             emptyText={formatMessage({
-              id: "component.globalHeader.message.empty"
+              id: "component.globalHeader.message.empty",
             })}
             emptyImage="https://gw.alipayobjects.com/zos/rmsportal/sAuJeJzSKbUmHfBQRzmZ.svg"
             showViewMore
@@ -200,7 +200,7 @@ const GlobalHeaderRight = {
             list={noticeData.event}
             title="event"
             emptyText={formatMessage({
-              id: "component.globalHeader.event.empty"
+              id: "component.globalHeader.event.empty",
             })}
             emptyImage="https://gw.alipayobjects.com/zos/rmsportal/HsIsxMZiWKrNUavQUXqx.svg"
             showViewMore
@@ -224,7 +224,7 @@ const GlobalHeaderRight = {
         <SelectLang className={styles.action} />
       </div>
     );
-  }
+  },
 };
 
 export default GlobalHeaderRight;

@@ -7,7 +7,7 @@ const FormItem = Form.Item;
 export default {
   props: {
     className: String,
-    loading: Boolean
+    loading: Boolean,
   },
   render() {
     return (
@@ -23,6 +23,6 @@ export default {
         </Button>
       </FormItem>
     );
-  }
+  },
 };
 </script>

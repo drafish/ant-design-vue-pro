@@ -12,13 +12,13 @@ const Tag = {
         onClick={onClick}
         class={className}
         style={{
-          backgroundColor: color
+          backgroundColor: color,
         }}
       >
         {check ? <Icon type="check" /> : ""}
       </div>
     );
-  }
+  },
 };
 
 const ThemeColor = {
@@ -30,36 +30,36 @@ const ThemeColor = {
       colorList = [
         {
           key: "dust",
-          color: "#F5222D"
+          color: "#F5222D",
         },
         {
           key: "volcano",
-          color: "#FA541C"
+          color: "#FA541C",
         },
         {
           key: "sunset",
-          color: "#FAAD14"
+          color: "#FAAD14",
         },
         {
           key: "cyan",
-          color: "#13C2C2"
+          color: "#13C2C2",
         },
         {
           key: "green",
-          color: "#52C41A"
+          color: "#52C41A",
         },
         {
           key: "daybreak",
-          color: "#1890FF"
+          color: "#1890FF",
         },
         {
           key: "geekblue",
-          color: "#2F54EB"
+          color: "#2F54EB",
         },
         {
           key: "purple",
-          color: "#722ED1"
-        }
+          color: "#722ED1",
+        },
       ];
     }
     return (
@@ -82,7 +82,7 @@ const ThemeColor = {
         </div>
       </div>
     );
-  }
+  },
 };
 
 export default ThemeColor;

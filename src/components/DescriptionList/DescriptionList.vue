@@ -18,14 +18,14 @@ const genCls = useBEM(prefixCls);
 export default {
   name: "description-list",
   components: {
-    ARow: Row
+    ARow: Row,
   },
   props: {
     title: PropTypes.string,
     col: PropTypes.number.def(3),
     layout: PropTypes.string.def("horizontal"),
     gutter: PropTypes.number.def(32),
-    size: PropTypes.string.def("")
+    size: PropTypes.string.def(""),
   },
   computed: {
     clsString() {
@@ -33,11 +33,11 @@ export default {
     },
     column() {
       return this.col > 4 ? 4 : this.col;
-    }
+    },
   },
   methods: {
-    genCls
-  }
+    genCls,
+  },
 };
 </script>
 

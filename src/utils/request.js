@@ -18,7 +18,7 @@ const codeMessage = {
   500: "服务器发生错误，请检查服务器。",
   502: "网关错误。",
   503: "服务不可用，服务器暂时过载或维护。",
-  504: "网关超时。"
+  504: "网关超时。",
 };
 
 /**
@@ -29,19 +29,19 @@ const errorHandler = error => {
   const errortext = codeMessage[response.status] || response.statusText;
   const {
     status,
-    config: { url }
+    config: { url },
   } = response;
 
   if (status === 401) {
     notification.error({
-      message: "未登录或登录已过期，请重新登录。"
+      message: "未登录或登录已过期，请重新登录。",
     });
     store.dispatch("login/logout");
     return;
   }
   notification.error({
     message: `请求错误 ${status}: ${url}`,
-    description: errortext
+    description: errortext,
   });
   // environment should not be used
   if (status === 403) {

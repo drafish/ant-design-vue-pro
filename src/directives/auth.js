@@ -6,7 +6,7 @@ function install(Vue, options = {}) {
       if (!check(binding.value)) {
         el.parentNode && el.parentNode.removeChild(el);
       }
-    }
+    },
   });
 }
 

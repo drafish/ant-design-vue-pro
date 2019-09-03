@@ -18,26 +18,26 @@ const HeaderView = {
     "isMobile",
     "handleMenuCollapse",
     "menuData",
-    "logo"
+    "logo",
   ],
 
   computed: {
     ...mapState("user", {
-      currentUser: state => state.currentUser
+      currentUser: state => state.currentUser,
     }),
     ...mapState("global", {
       collapsed: state => state.collapsed,
-      notices: state => state.notices
+      notices: state => state.notices,
     }),
     ...mapState("setting", {
-      setting: state => state
-    })
+      setting: state => state,
+    }),
   },
 
   beforeUpdate() {
     if (!this.autoHideHeader && !this.visible) {
       return {
-        visible: true
+        visible: true,
       };
     }
     return null;
@@ -66,8 +66,8 @@ const HeaderView = {
     handleNoticeClear(type) {
       message.success(
         `${formatMessage("component.noticeIcon.cleared")} ${formatMessage(
-          `component.globalHeader.${type}`
-        )}`
+          `component.globalHeader.${type}`,
+        )}`,
       );
       this.clearNotices(type);
     },
@@ -121,7 +121,7 @@ const HeaderView = {
           this.ticking = false;
         });
       }
-    }
+    },
   },
 
   render() {
@@ -148,8 +148,8 @@ const HeaderView = {
                 onCollapse: handleMenuCollapse,
                 onNoticeClear: this.handleNoticeClear,
                 onMenuClick: this.handleMenuClick,
-                onNoticeVisibleChange: this.handleNoticeVisibleChange
-              }
+                onNoticeVisibleChange: this.handleNoticeVisibleChange,
+              },
             }}
           />
         ) : (
@@ -164,15 +164,15 @@ const HeaderView = {
                 onCollapse: handleMenuCollapse,
                 onNoticeClear: this.handleNoticeClear,
                 onMenuClick: this.handleMenuClick,
-                onNoticeVisibleChange: this.handleNoticeVisibleChange
-              }
+                onNoticeVisibleChange: this.handleNoticeVisibleChange,
+              },
             }}
           />
         )}
       </Header>
     ) : null;
     return <transition name="fade">{HeaderDom}</transition>;
-  }
+  },
 };
 
 export default HeaderView;

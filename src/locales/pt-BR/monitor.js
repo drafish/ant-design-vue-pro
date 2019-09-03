@@ -16,5 +16,5 @@ export default {
   "app.monitor.popular-searches": "Buscas populares",
   "app.monitor.resource-surplus": "Excedente de recursos",
   "app.monitor.fund-surplus": "Excedente do fundo",
-  "app.exception.back": "Voltar a home"
+  "app.exception.back": "Voltar a home",
 };

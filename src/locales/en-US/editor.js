@@ -7,5 +7,5 @@ export default {
     "The topology diagram refers to the network structure diagram composed of network node devices and communication media.",
   "app.editor.mind.title": "Mind Map Editor",
   "app.editor.mind.description":
-    "The brain map is an effective graphical thinking tool for expressing divergent thinking. It is simple but effective and is a practical thinking tool."
+    "The brain map is an effective graphical thinking tool for expressing divergent thinking. It is simple but effective and is a practical thinking tool.",
 };

@@ -13,13 +13,13 @@ export default {
   props: {
     option: {
       type: Object,
-      default: () => {}
-    }
+      default: () => {},
+    },
   },
   watch: {
     option(val) {
       this.chart.setOption(val);
-    }
+    },
     // option: {
     //   handler(val) {
     //     this.chart.setOption(val);
@@ -48,8 +48,8 @@ export default {
       // 基于准备好的dom，初始化echarts实例
       this.chart = echarts.init(this.$refs.chartDom);
       this.chart.setOption(this.option);
-    }
-  }
+    },
+  },
 };
 </script>
 

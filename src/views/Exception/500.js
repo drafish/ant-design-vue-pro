@@ -13,7 +13,7 @@ const Exception500 = {
         backText={formatMessage({ id: "app.exception.back" })}
       />
     );
-  }
+  },
 };
 
 export default Exception500;

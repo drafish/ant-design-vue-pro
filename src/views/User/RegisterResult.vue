@@ -9,7 +9,7 @@
       <div :class="$style.title">
         {{
           $t("app.register-result.msg", {
-            email: account || "AntDesign@example.com"
+            email: account || "AntDesign@example.com",
           })
         }}
       </div>
@@ -36,13 +36,13 @@ import Result from "@/components/Result";
 
 export default {
   components: {
-    Result
+    Result,
   },
   computed: {
     account() {
       return this.$route.params.account;
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -11,8 +11,8 @@
             'payAccount',
             {
               initialValue: step.payAccount,
-              rules: [{ required: true, message: '请输入付款账号' }]
-            }
+              rules: [{ required: true, message: '请输入付款账号' }],
+            },
           ]"
           placeholder="请输入付款账号"
         />
@@ -37,10 +37,10 @@
                     } else {
                       callback(false);
                     }
-                  }
-                }
-              ]
-            }
+                  },
+                },
+              ],
+            },
           ]"
         />
       </a-form-item>
@@ -60,14 +60,14 @@ export default {
     return {
       formItemLayout: {
         labelCol: { span: 4 },
-        wrapperCol: { span: 14 }
-      }
+        wrapperCol: { span: 14 },
+      },
     };
   },
   computed: {
     step() {
       return this.$store.state.form.step;
-    }
+    },
   },
   methods: {
     handleSubmit() {
@@ -76,13 +76,13 @@ export default {
         if (!err) {
           $store.commit({
             type: "form/saveStepFormData",
-            payload: values
+            payload: values,
           });
           $router.push("/form/step-form/confirm");
         }
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

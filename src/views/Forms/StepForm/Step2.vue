@@ -18,8 +18,8 @@
             'password',
             {
               initialValue: step.payAccount,
-              rules: [{ required: true, message: '请输入密码' }]
-            }
+              rules: [{ required: true, message: '请输入密码' }],
+            },
           ]"
           type="password"
           placeholder="请输入付款密码"
@@ -40,14 +40,14 @@ export default {
     return {
       formItemLayout: {
         labelCol: { span: 4 },
-        wrapperCol: { span: 14 }
-      }
+        wrapperCol: { span: 14 },
+      },
     };
   },
   computed: {
     step() {
       return this.$store.state.form.step;
-    }
+    },
   },
   methods: {
     handleSubmit() {
@@ -56,15 +56,15 @@ export default {
         if (!err) {
           $store.dispatch({
             type: "form/submitStepForm",
-            payload: { ...step, ...values }
+            payload: { ...step, ...values },
           });
         }
       });
     },
     onPrev() {
       this.$router.push("/form/step-form/info");
-    }
-  }
+    },
+  },
 };
 </script>
 

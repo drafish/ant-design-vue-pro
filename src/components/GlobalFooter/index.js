@@ -25,7 +25,7 @@ const GlobalFooter = {
         {copyright && <div class={styles.copyright}>{copyright}</div>}
       </footer>
     );
-  }
+  },
 };
 
 export default GlobalFooter;

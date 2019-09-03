@@ -31,7 +31,7 @@ function formatter(data, parentAuthority, parentName) {
         ...item,
         name,
         locale,
-        authority: item.authority || parentAuthority
+        authority: item.authority || parentAuthority,
       };
       if (item.children) {
         const children = formatter(item.children, item.authority, locale);
@@ -57,7 +57,7 @@ const getSubMenu = item => {
   ) {
     return {
       ...item,
-      children: filterMenuData(item.children)
+      children: filterMenuData(item.children),
     };
   }
   return item;
@@ -100,7 +100,7 @@ const getBreadcrumbNameMap = menuData => {
 
 const memoizeOneGetBreadcrumbNameMap = memoizeOne(
   getBreadcrumbNameMap,
-  isEqual
+  isEqual,
 );
 
 export default {
@@ -109,7 +109,7 @@ export default {
   state: {
     menuData: [],
     routerData: [],
-    breadcrumbNameMap: {}
+    breadcrumbNameMap: {},
   },
 
   actions: {
@@ -118,10 +118,10 @@ export default {
       const originalMenuData = memoizeOneFormatter(routes, authority, path);
       const menuData = filterMenuData(originalMenuData);
       const breadcrumbNameMap = memoizeOneGetBreadcrumbNameMap(
-        originalMenuData
+        originalMenuData,
       );
       commit("save", { menuData, breadcrumbNameMap, routerData: routes });
-    }
+    },
   },
 
   mutations: {
@@ -129,6 +129,6 @@ export default {
       state.menuData = payload.menuData;
       state.routerData = payload.routerData;
       state.breadcrumbNameMap = payload.breadcrumbNameMap;
-    }
-  }
+    },
+  },
 };

@@ -14,29 +14,29 @@ export default {
               key: "Pro 首页",
               title: "Pro 首页",
               href: "https://pro.ant.design",
-              blankTarget: true
+              blankTarget: true,
             },
             {
               key: "github",
               title: <Icon type="github" />,
               href: "https://github.com/vueComponent/ant-design-vue-pro",
-              blankTarget: true
+              blankTarget: true,
             },
             {
               key: "Ant Design",
               title: "Ant Design",
               href: "https://ant.design",
-              blankTarget: true
-            }
+              blankTarget: true,
+            },
           ]}
           copyright={[
             "Copyright ",
             <Icon type="copyright" />,
-            " 2019 蚂蚁金服体验技术部出品"
+            " 2019 蚂蚁金服体验技术部出品",
           ]}
         />
       </Footer>
     );
-  }
+  },
 };
 </script>

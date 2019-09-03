@@ -27,8 +27,8 @@ export default {
     DescriptionList,
     Description,
     Divider,
-    Card
-  }
+    Card,
+  },
 };
 </script>
 

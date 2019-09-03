@@ -52,27 +52,27 @@ import Footer from "./Footer";
 const Provider = Context.Provider;
 const query = {
   "screen-xs": {
-    maxWidth: 575
+    maxWidth: 575,
   },
   "screen-sm": {
     minWidth: 576,
-    maxWidth: 767
+    maxWidth: 767,
   },
   "screen-md": {
     minWidth: 768,
-    maxWidth: 991
+    maxWidth: 991,
   },
   "screen-lg": {
     minWidth: 992,
-    maxWidth: 1199
+    maxWidth: 1199,
   },
   "screen-xl": {
     minWidth: 1200,
-    maxWidth: 1599
+    maxWidth: 1599,
   },
   "screen-xxl": {
-    minWidth: 1600
-  }
+    minWidth: 1600,
+  },
 };
 
 export default {
@@ -80,19 +80,19 @@ export default {
     return {
       query,
       params: {},
-      logo
+      logo,
     };
   },
   computed: {
     ...mapState("global", {
-      collapsed: state => state.collapsed
+      collapsed: state => state.collapsed,
     }),
     ...mapState("setting", {
-      setting: state => state
+      setting: state => state,
     }),
     ...mapState("menu", {
       menuData: state => state.menuData,
-      breadcrumbNameMap: state => state.breadcrumbNameMap
+      breadcrumbNameMap: state => state.breadcrumbNameMap,
     }),
     className() {
       return classNames(this.params);
@@ -103,17 +103,17 @@ export default {
     layoutStyle() {
       return {
         ...this.getLayoutStyle(),
-        minHeight: "100vh"
+        minHeight: "100vh",
       };
     },
     contentStyle() {
       return !this.setting.fixedHeader ? { paddingTop: 0 } : {};
-    }
+    },
   },
   components: {
     VNodes: {
       functional: true,
-      render: (h, ctx) => ctx.props.vnodes
+      render: (h, ctx) => ctx.props.vnodes,
     },
     Header,
     Footer,
@@ -121,7 +121,7 @@ export default {
     Authorized,
     Media,
     ContainerQuery,
-    Provider
+    Provider,
   },
   mounted() {
     const { children, path, authority } = this.$router.options.routes[1];
@@ -138,7 +138,7 @@ export default {
       const { location, breadcrumbNameMap } = this;
       return {
         location,
-        breadcrumbNameMap
+        breadcrumbNameMap,
       };
     },
 
@@ -147,7 +147,7 @@ export default {
       const { collapsed, isMobile } = this;
       if (fixSiderbar && layout !== "topmenu" && !isMobile) {
         return {
-          paddingLeft: collapsed ? "80px" : "256px"
+          paddingLeft: collapsed ? "80px" : "256px",
         };
       }
       return null;
@@ -167,8 +167,8 @@ export default {
         return null;
       }
       return <SettingDrawer />;
-    }
-  }
+    },
+  },
 };
 </script>
 

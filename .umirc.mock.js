@@ -5,5 +5,5 @@ module.exports = {
   ...require("./mock/notices"),
   ...require("./mock/profile"),
   ...require("./mock/rule"),
-  ...require("./mock/user")
+  ...require("./mock/user"),
 };

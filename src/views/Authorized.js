@@ -6,19 +6,19 @@ import Exception403 from "@/views/Exception/403";
 
 const Redirect = {
   methods: {
-    ...mapActions("login", ["logout"])
+    ...mapActions("login", ["logout"]),
   },
   render() {
     this.logout();
     return null;
-  }
+  },
 };
 export default {
   name: "AuthComponent",
   computed: {
     ...mapState("menu", {
-      routerData: state => state.routerData
-    })
+      routerData: state => state.routerData,
+    }),
   },
   render() {
     const { routerData } = this;
@@ -50,5 +50,5 @@ export default {
         {children}
       </Authorized>
     );
-  }
+  },
 };

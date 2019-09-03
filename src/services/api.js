@@ -18,8 +18,8 @@ export async function removeRule(params) {
     method: "POST",
     data: {
       ...params,
-      method: "delete"
-    }
+      method: "delete",
+    },
   });
 }
 
@@ -28,8 +28,8 @@ export async function addRule(params) {
     method: "POST",
     data: {
       ...params,
-      method: "post"
-    }
+      method: "post",
+    },
   });
 }
 
@@ -38,15 +38,15 @@ export async function updateRule(params = {}) {
     method: "POST",
     data: {
       ...params.body,
-      method: "update"
-    }
+      method: "update",
+    },
   });
 }
 
 export async function fakeSubmitForm(params) {
   return request("/api/forms", {
     method: "POST",
-    data: params
+    data: params,
   });
 }
 
@@ -76,8 +76,8 @@ export async function removeFakeList(params) {
     method: "POST",
     data: {
       ...restParams,
-      method: "delete"
-    }
+      method: "delete",
+    },
   });
 }
 
@@ -87,8 +87,8 @@ export async function addFakeList(params) {
     method: "POST",
     data: {
       ...restParams,
-      method: "post"
-    }
+      method: "post",
+    },
   });
 }
 
@@ -98,22 +98,22 @@ export async function updateFakeList(params) {
     method: "POST",
     data: {
       ...restParams,
-      method: "update"
-    }
+      method: "update",
+    },
   });
 }
 
 export async function fakeAccountLogin(params) {
   return request("/api/login/account", {
     method: "POST",
-    data: params
+    data: params,
   });
 }
 
 export async function fakeRegister(params) {
   return request("/api/register", {
     method: "POST",
-    data: params
+    data: params,
   });
 }
 

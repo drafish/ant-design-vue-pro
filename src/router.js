@@ -17,27 +17,29 @@ const router = new Router({
       children: [
         {
           path: "/user",
-          redirect: "/user/login"
+          redirect: "/user/login",
         },
         {
           path: "/user/login",
           name: "login",
           component: () =>
-            import(/* webpackChunkName: "user" */ "./views/User/Login")
+            import(/* webpackChunkName: "user" */ "./views/User/Login"),
         },
         {
           path: "/user/register",
           name: "register",
           component: () =>
-            import(/* webpackChunkName: "user" */ "./views/User/Register")
+            import(/* webpackChunkName: "user" */ "./views/User/Register"),
         },
         {
           path: "/user/register-result",
           name: "register.result",
           component: () =>
-            import(/* webpackChunkName: "user" */ "./views/User/RegisterResult")
-        }
-      ]
+            import(
+              /* webpackChunkName: "user" */ "./views/User/RegisterResult"
+            ),
+        },
+      ],
     },
     {
       path: "/",
@@ -48,7 +50,7 @@ const router = new Router({
         {
           path: "/",
           authority: ["user", "admin"],
-          redirect: "/dashboard/analysis"
+          redirect: "/dashboard/analysis",
         },
         {
           path: "/dashboard",
@@ -62,9 +64,9 @@ const router = new Router({
               component: () =>
                 import(
                   /* webpackChunkName: "dashboard" */ "./views/Dashboard/Analysis"
-                )
-            }
-          ]
+                ),
+            },
+          ],
         },
         // form
         {
@@ -77,7 +79,9 @@ const router = new Router({
               path: "/form/basic-form",
               name: "basicform",
               component: () =>
-                import(/* webpackChunkName: "form" */ "./views/Forms/BasicForm")
+                import(
+                  /* webpackChunkName: "form" */ "./views/Forms/BasicForm"
+                ),
             },
             {
               path: "/form/step-form",
@@ -88,7 +92,7 @@ const router = new Router({
               children: [
                 {
                   path: "/form/step-form",
-                  redirect: "/form/step-form/info"
+                  redirect: "/form/step-form/info",
                 },
                 {
                   path: "/form/step-form/info",
@@ -96,7 +100,7 @@ const router = new Router({
                   component: () =>
                     import(
                       /* webpackChunkName: "form" */ "./views/Forms/StepForm/Step1"
-                    )
+                    ),
                 },
                 {
                   path: "/form/step-form/confirm",
@@ -104,7 +108,7 @@ const router = new Router({
                   component: () =>
                     import(
                       /* webpackChunkName: "form" */ "./views/Forms/StepForm/Step2"
-                    )
+                    ),
                 },
                 {
                   path: "/form/step-form/result",
@@ -112,11 +116,11 @@ const router = new Router({
                   component: () =>
                     import(
                       /* webpackChunkName: "form" */ "./views/Forms/StepForm/Step3"
-                    )
-                }
-              ]
-            }
-          ]
+                    ),
+                },
+              ],
+            },
+          ],
         },
         {
           path: "/list",
@@ -128,9 +132,9 @@ const router = new Router({
               path: "/list/table-list",
               name: "searchtable",
               component: () =>
-                import(/* webpackChunkName: "list" */ "@/views/List/TableList")
-            }
-          ]
+                import(/* webpackChunkName: "list" */ "@/views/List/TableList"),
+            },
+          ],
         },
         // Exception
         {
@@ -146,7 +150,7 @@ const router = new Router({
               component: () =>
                 import(
                   /* webpackChunkName: "exception" */ "@/views/Exception/403"
-                )
+                ),
             },
             {
               path: "/exception/404",
@@ -154,7 +158,7 @@ const router = new Router({
               component: () =>
                 import(
                   /* webpackChunkName: "exception" */ "@/views/Exception/404"
-                )
+                ),
             },
             {
               path: "/exception/500",
@@ -162,7 +166,7 @@ const router = new Router({
               component: () =>
                 import(
                   /* webpackChunkName: "exception" */ "@/views/Exception/500"
-                )
+                ),
             },
             {
               path: "/exception/trigger",
@@ -171,9 +175,9 @@ const router = new Router({
               component: () =>
                 import(
                   /* webpackChunkName: "exception" */ "@/views/Exception/TriggerException"
-                )
-            }
-          ]
+                ),
+            },
+          ],
         },
         // Profile
         {
@@ -189,7 +193,7 @@ const router = new Router({
               component: () =>
                 import(
                   /* webpackChunkName: "profile" */ "@/views/Profile/BasicProfile"
-                )
+                ),
             },
             {
               path: "/profile/advanced",
@@ -198,9 +202,9 @@ const router = new Router({
               component: () =>
                 import(
                   /* webpackChunkName: "profile" */ "@/views/Profile/AdvancedProfile"
-                )
-            }
-          ]
+                ),
+            },
+          ],
         },
         {
           path: "/result",
@@ -214,33 +218,33 @@ const router = new Router({
               component: () =>
                 import(
                   /* webpackChunkName: "result" */ "@/views/Result/Success"
-                )
+                ),
             },
             {
               path: "/result/fail",
               name: "fail",
               component: () =>
-                import(/* webpackChunkName: "result" */ "@/views/Result/Error")
-            }
-          ]
-        }
-      ]
+                import(/* webpackChunkName: "result" */ "@/views/Result/Error"),
+            },
+          ],
+        },
+      ],
     },
     {
       path: "/403",
       name: "403",
       hideInMenu: true,
       component: () =>
-        import(/* webpackChunkName: "exception" */ "@/views/Exception/403")
+        import(/* webpackChunkName: "exception" */ "@/views/Exception/403"),
     },
     {
       path: "*",
       name: "404",
       hideInMenu: true,
       component: () =>
-        import(/* webpackChunkName: "exception" */ "@/views/Exception/404")
-    }
-  ]
+        import(/* webpackChunkName: "exception" */ "@/views/Exception/404"),
+    },
+  ],
 });
 
 router.beforeEach((to, from, next) => {

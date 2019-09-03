@@ -4,23 +4,23 @@ import AvatarListItem from "./item";
 export default {
   name: "AvatarList",
   components: {
-    AvatarListItem
+    AvatarListItem,
   },
   props: {
     size: {
       type: [String, Number],
-      default: "default"
+      default: "default",
     },
     maxLength: {
       type: Number,
-      default: 0
+      default: 0,
     },
     excessItemsStyle: {
       type: Object,
       default: () => {
         return {};
-      }
-    }
+      },
+    },
   },
   render(h) {
     const list = this.$slots.default;
@@ -37,9 +37,9 @@ export default {
       { class: "avatar-list" },
       items.map(item => {
         return h("li", { class: "avatar-list-item" }, [item]);
-      })
+      }),
     );
-  }
+  },
 };
 </script>
 

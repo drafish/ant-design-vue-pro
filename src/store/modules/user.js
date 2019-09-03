@@ -4,7 +4,7 @@ export default {
 
   state: {
     list: [],
-    currentUser: {}
+    currentUser: {},
   },
 
   actions: {
@@ -15,25 +15,25 @@ export default {
     async fetchCurrent({ commit }) {
       const response = await queryCurrent();
       commit("saveCurrentUser", response);
-    }
+    },
   },
 
   mutations: {
     save(state, action) {
       Object.assign(state, {
-        list: action
+        list: action,
       });
     },
     saveCurrentUser(state, action) {
       Object.assign(state, {
-        currentUser: action || {}
+        currentUser: action || {},
       });
     },
     changeNotifyCount(state, action) {
       Object.assign(state.currentUser, {
         notifyCount: action.totalCount,
-        unreadCount: action.unreadCount
+        unreadCount: action.unreadCount,
       });
-    }
-  }
+    },
+  },
 };

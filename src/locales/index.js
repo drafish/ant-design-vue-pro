@@ -13,8 +13,8 @@ const i18n = new VueI18n({
     "zh-CN": zhCN,
     "en-US": enUS,
     "zh-TW": zhTW,
-    "pt-BR": ptBR
-  }
+    "pt-BR": ptBR,
+  },
 });
 
 function setLocale(lang) {
@@ -47,7 +47,7 @@ const FormattedMessage = {
   render(h, ctx) {
     const { id } = ctx.props;
     return <span>{i18n.t(id)}</span>;
-  }
+  },
 };
 
 export { setLocale, getLocale, formatMessage, FormattedMessage };

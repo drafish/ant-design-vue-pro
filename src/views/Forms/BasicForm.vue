@@ -31,8 +31,8 @@
             'fieldA',
             {
               initialValue: fieldA,
-              rules: [{ required: true, min: 6, message: '必须大于5个字符' }]
-            }
+              rules: [{ required: true, min: 6, message: '必须大于5个字符' }],
+            },
           ]"
           placeholder="input placeholder"
         />
@@ -60,7 +60,7 @@ export default {
     return {
       formLayout: "horizontal",
       fieldA: "hello",
-      fieldB: ""
+      fieldB: "",
     };
   },
   mounted() {
@@ -74,7 +74,7 @@ export default {
       return formLayout === "horizontal"
         ? {
             labelCol: { span: 4 },
-            wrapperCol: { span: 14 }
+            wrapperCol: { span: 14 },
           }
         : {};
     },
@@ -82,10 +82,10 @@ export default {
       const { formLayout } = this;
       return formLayout === "horizontal"
         ? {
-            wrapperCol: { span: 14, offset: 4 }
+            wrapperCol: { span: 14, offset: 4 },
           }
         : {};
-    }
+    },
   },
   methods: {
     handleFormLayoutChange(e) {
@@ -98,7 +98,7 @@ export default {
           Object.assign(this, values);
         }
       });
-    }
-  }
+    },
+  },
 };
 </script>

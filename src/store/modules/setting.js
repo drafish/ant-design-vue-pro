@@ -20,7 +20,7 @@ const updateTheme = primaryColor => {
     setTimeout(() => {
       window.less
         .modifyVars({
-          "@primary-color": primaryColor
+          "@primary-color": primaryColor,
         })
         .then(() => {
           hideMessage();
@@ -90,7 +90,7 @@ export default {
       }
       updateColorWeak(colorWeak);
       Object.assign(state, {
-        ...setting
+        ...setting,
       });
     },
     updateSetting(state, payload) {
@@ -123,8 +123,8 @@ export default {
       updateColorWeak(colorWeak);
       window.history.replaceState(null, "setting", urlParams.href);
       Object.assign(state, {
-        ...payload
+        ...payload,
       });
-    }
-  }
+    },
+  },
 };

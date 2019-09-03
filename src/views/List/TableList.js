@@ -17,7 +17,7 @@ import {
   Badge,
   Divider,
   Steps,
-  Radio
+  Radio,
 } from "ant-design-vue";
 import { mapState, mapActions } from "vuex";
 import StandardTable from "@/components/StandardTable";
@@ -61,14 +61,14 @@ const CreateForm = Form.create()({
               {
                 required: true,
                 message: "请输入至少五个字符的规则描述！",
-                min: 5
-              }
-            ]
+                min: 5,
+              },
+            ],
           })(<Input placeholder="请输入" />)}
         </FormItem>
       </Modal>
     );
-  }
+  },
 });
 
 const UpdateForm = Form.create()({
@@ -76,16 +76,16 @@ const UpdateForm = Form.create()({
     updateModalVisible: Boolean,
     handleUpdate: {
       type: Function,
-      default: () => {}
+      default: () => {},
     },
     handleUpdateModalVisible: {
       type: Function,
-      default: () => {}
+      default: () => {},
     },
     values: {
       type: Object,
-      default: {}
-    }
+      default: {},
+    },
   },
 
   data() {
@@ -98,13 +98,13 @@ const UpdateForm = Form.create()({
         template: "0",
         type: "1",
         time: "",
-        frequency: "month"
+        frequency: "month",
       },
       currentStep: 0,
       formLayout: {
         labelCol: { span: 7 },
-        wrapperCol: { span: 13 }
-      }
+        wrapperCol: { span: 13 },
+      },
     };
   },
 
@@ -140,67 +140,67 @@ const UpdateForm = Form.create()({
         return [
           <FormItem key="target" {...this.formLayout} label="监控对象">
             {form.getFieldDecorator("target", {
-              initialValue: formVals.target
+              initialValue: formVals.target,
             })(
               <Select style={{ width: "100%" }}>
                 <Option value="0">表一</Option>
                 <Option value="1">表二</Option>
-              </Select>
+              </Select>,
             )}
           </FormItem>,
           <FormItem key="template" {...this.formLayout} label="规则模板">
             {form.getFieldDecorator("template", {
-              initialValue: formVals.template
+              initialValue: formVals.template,
             })(
               <Select style={{ width: "100%" }}>
                 <Option value="0">规则模板一</Option>
                 <Option value="1">规则模板二</Option>
-              </Select>
+              </Select>,
             )}
           </FormItem>,
           <FormItem key="type" {...this.formLayout} label="规则类型">
             {form.getFieldDecorator("type", {
-              initialValue: formVals.type
+              initialValue: formVals.type,
             })(
               <RadioGroup>
                 <Radio value="0">强</Radio>
                 <Radio value="1">弱</Radio>
-              </RadioGroup>
+              </RadioGroup>,
             )}
-          </FormItem>
+          </FormItem>,
         ];
       }
       if (currentStep === 2) {
         return [
           <FormItem key="time" {...this.formLayout} label="开始时间">
             {form.getFieldDecorator("time", {
-              rules: [{ required: true, message: "请选择开始时间！" }]
+              rules: [{ required: true, message: "请选择开始时间！" }],
             })(
               <DatePicker
                 style={{ width: "100%" }}
                 showTime
                 format="YYYY-MM-DD HH:mm:ss"
                 placeholder="选择开始时间"
-              />
+              />,
             )}
           </FormItem>,
           <FormItem key="frequency" {...this.formLayout} label="调度周期">
             {form.getFieldDecorator("frequency", {
-              initialValue: formVals.frequency
+              initialValue: formVals.frequency,
             })(
               <Select style={{ width: "100%" }}>
                 <Option value="month">月</Option>
                 <Option value="week">周</Option>
-              </Select>
+              </Select>,
             )}
-          </FormItem>
+          </FormItem>,
         ];
       }
       return [
         <FormItem key="name" {...this.formLayout} label="规则名称">
           {form.getFieldDecorator("name", {
             rules: [{ required: true, message: "请输入规则名称！" }],
-            initialValue: formVals.name
+            initialValue: formVals.name,
           })(<Input placeholder="请输入" />)}
         </FormItem>,
         <FormItem key="desc" {...this.formLayout} label="规则描述">
@@ -209,12 +209,12 @@ const UpdateForm = Form.create()({
               {
                 required: true,
                 message: "请输入至少五个字符的规则描述！",
-                min: 5
-              }
+                min: 5,
+              },
             ],
-            initialValue: formVals.desc
+            initialValue: formVals.desc,
           })(<TextArea rows={4} placeholder="请输入至少五个字符" />)}
-        </FormItem>
+        </FormItem>,
       ];
     },
 
@@ -237,7 +237,7 @@ const UpdateForm = Form.create()({
             onClick={() => this.handleNext(currentStep)}
           >
             下一步
-          </Button>
+          </Button>,
         ];
       }
       if (currentStep === 2) {
@@ -257,7 +257,7 @@ const UpdateForm = Form.create()({
             onClick={() => this.handleNext(currentStep)}
           >
             完成
-          </Button>
+          </Button>,
         ];
       }
       return [
@@ -273,16 +273,16 @@ const UpdateForm = Form.create()({
           onClick={() => this.handleNext(currentStep)}
         >
           下一步
-        </Button>
+        </Button>,
       ];
-    }
+    },
   },
 
   render() {
     const {
       updateModalVisible,
       handleUpdateModalVisible,
-      values
+      values,
     } = this.$props;
     const { currentStep, formVals } = this.$data;
 
@@ -305,7 +305,7 @@ const UpdateForm = Form.create()({
         {this.renderContent(currentStep, formVals)}
       </Modal>
     );
-  }
+  },
 });
 
 const TableList = {
@@ -325,11 +325,11 @@ const TableList = {
             <router-link to={`/profile/basic/${text.replace(/\s+/gi, "-")}`}>
               {text}
             </router-link>
-          )
+          ),
         },
         {
           title: "描述",
-          dataIndex: "desc"
+          dataIndex: "desc",
         },
         {
           title: "服务调用次数",
@@ -337,7 +337,7 @@ const TableList = {
           sorter: true,
           customRender: val => `${val} 万`,
           // mark to display a total number
-          needTotal: true
+          needTotal: true,
         },
         {
           title: "状态",
@@ -345,24 +345,24 @@ const TableList = {
           filters: [
             {
               text: status[0],
-              value: 0
+              value: 0,
             },
             {
               text: status[1],
-              value: 1
+              value: 1,
             },
             {
               text: status[2],
-              value: 2
+              value: 2,
             },
             {
               text: status[3],
-              value: 3
-            }
+              value: 3,
+            },
           ],
           customRender: val => {
             return <Badge status={statusMap[val]} text={status[val]} />;
-          }
+          },
         },
         {
           title: "上次调度时间",
@@ -370,7 +370,7 @@ const TableList = {
           sorter: true,
           customRender: val => (
             <span>{moment(val).format("YYYY-MM-DD HH:mm:ss")}</span>
-          )
+          ),
         },
         {
           title: "操作",
@@ -382,16 +382,16 @@ const TableList = {
               <Divider type="vertical" />
               <a href="">订阅警报</a>
             </div>
-          )
-        }
-      ]
+          ),
+        },
+      ],
     };
   },
 
   computed: {
     ...mapState("rule", {
-      rule: state => state
-    })
+      rule: state => state,
+    }),
   },
 
   mounted() {
@@ -413,7 +413,7 @@ const TableList = {
         currentPage: pagination.current,
         pageSize: pagination.pageSize,
         ...formValues,
-        ...filters
+        ...filters,
       };
       if (sorter.field) {
         params.sorter = `${sorter.field}_${sorter.order}`;
@@ -442,11 +442,11 @@ const TableList = {
         case "remove":
           this.remove(
             {
-              key: selectedRows.map(row => row.key)
+              key: selectedRows.map(row => row.key),
             },
             () => {
               this.selectedRows = [];
-            }
+            },
           );
           break;
         default:
@@ -468,7 +468,7 @@ const TableList = {
 
         const values = {
           ...fieldsValue,
-          updatedAt: fieldsValue.updatedAt && fieldsValue.updatedAt.valueOf()
+          updatedAt: fieldsValue.updatedAt && fieldsValue.updatedAt.valueOf(),
         };
 
         this.formValues = values;
@@ -484,13 +484,13 @@ const TableList = {
     handleUpdateModalVisible(flag, record) {
       Object.assign(this, {
         updateModalVisible: !!flag,
-        stepFormValues: record || {}
+        stepFormValues: record || {},
       });
     },
 
     handleAdd(fields) {
       this.add({
-        desc: fields.desc
+        desc: fields.desc,
       });
 
       message.success("添加成功");
@@ -504,8 +504,8 @@ const TableList = {
         body: {
           name: fields.name,
           desc: fields.desc,
-          key: fields.key
-        }
+          key: fields.key,
+        },
       });
 
       message.success("配置成功");
@@ -514,7 +514,7 @@ const TableList = {
 
     renderSimpleForm() {
       const {
-        form: { getFieldDecorator }
+        form: { getFieldDecorator },
       } = this.$props;
       return (
         <Form onSubmit={this.handleSearch} layout="inline">
@@ -530,7 +530,7 @@ const TableList = {
                   <Select placeholder="请选择" style={{ width: "100%" }}>
                     <Option value="0">关闭</Option>
                     <Option value="1">运行中</Option>
-                  </Select>
+                  </Select>,
                 )}
               </FormItem>
             </Col>
@@ -557,7 +557,7 @@ const TableList = {
 
     renderAdvancedForm() {
       const {
-        form: { getFieldDecorator }
+        form: { getFieldDecorator },
       } = this.$props;
       return (
         <Form onSubmit={this.handleSearch} layout="inline">
@@ -573,14 +573,14 @@ const TableList = {
                   <Select placeholder="请选择" style={{ width: "100%" }}>
                     <Option value="0">关闭</Option>
                     <Option value="1">运行中</Option>
-                  </Select>
+                  </Select>,
                 )}
               </FormItem>
             </Col>
             <Col md={8} sm={24}>
               <FormItem label="调用次数">
                 {getFieldDecorator("number")(
-                  <InputNumber style={{ width: "100%" }} />
+                  <InputNumber style={{ width: "100%" }} />,
                 )}
               </FormItem>
             </Col>
@@ -592,7 +592,7 @@ const TableList = {
                   <DatePicker
                     style={{ width: "100%" }}
                     placeholder="请输入更新日期"
-                  />
+                  />,
                 )}
               </FormItem>
             </Col>
@@ -602,7 +602,7 @@ const TableList = {
                   <Select placeholder="请选择" style={{ width: "100%" }}>
                     <Option value="0">关闭</Option>
                     <Option value="1">运行中</Option>
-                  </Select>
+                  </Select>,
                 )}
               </FormItem>
             </Col>
@@ -612,7 +612,7 @@ const TableList = {
                   <Select placeholder="请选择" style={{ width: "100%" }}>
                     <Option value="0">关闭</Option>
                     <Option value="1">运行中</Option>
-                  </Select>
+                  </Select>,
                 )}
               </FormItem>
             </Col>
@@ -640,18 +640,18 @@ const TableList = {
     renderForm() {
       const { expandForm } = this.$data;
       return expandForm ? this.renderAdvancedForm() : this.renderSimpleForm();
-    }
+    },
   },
 
   render() {
     const {
-      rule: { data, loading }
+      rule: { data, loading },
     } = this;
     const {
       selectedRows,
       modalVisible,
       updateModalVisible,
-      stepFormValues
+      stepFormValues,
     } = this.$data;
     const menu = (
       <Menu onClick={this.handleMenuClick} selectedKeys={[]}>
@@ -662,11 +662,11 @@ const TableList = {
 
     const parentMethods = {
       handleAdd: this.handleAdd,
-      handleModalVisible: this.handleModalVisible
+      handleModalVisible: this.handleModalVisible,
     };
     const updateMethods = {
       handleUpdateModalVisible: this.handleUpdateModalVisible,
-      handleUpdate: this.handleUpdate
+      handleUpdate: this.handleUpdate,
     };
     return (
       <div>
@@ -712,7 +712,7 @@ const TableList = {
         ) : null}
       </div>
     );
-  }
+  },
 };
 
 export default Form.create()(TableList);

@@ -10,7 +10,7 @@ const FormItem = Form.Item;
 const WrapFormItem = {
   data() {
     return {
-      count: 0
+      count: 0,
     };
   },
   props: {
@@ -25,14 +25,14 @@ const WrapFormItem = {
     type: String,
     getCaptchaButtonText: {
       type: String,
-      default: "captcha"
+      default: "captcha",
     },
     getCaptchaSecondText: {
       type: String,
-      default: "second"
+      default: "second",
     },
     onGetCaptcha: Function,
-    countDown: Number
+    countDown: Number,
   },
   mounted() {
     const { updateActive, name } = this.$props;
@@ -46,7 +46,7 @@ const WrapFormItem = {
   methods: {
     getFormItemOptions({ onChange, defaultValue, customprops, rules }) {
       const options = {
-        rules: rules || customprops.rules
+        rules: rules || customprops.rules,
       };
       if (onChange) {
         options.onChange = onChange;
@@ -77,7 +77,7 @@ const WrapFormItem = {
           clearInterval(this.interval);
         }
       }, 1000);
-    }
+    },
   },
   render() {
     const { count } = this.$data;
@@ -120,7 +120,7 @@ const WrapFormItem = {
           <Row gutter={8}>
             <Col span={16}>
               {getFieldDecorator(name, options)(
-                <Input {...{ props: { ...customprops, ...inputProps } }} />
+                <Input {...{ props: { ...customprops, ...inputProps } }} />,
               )}
             </Col>
             <Col span={8}>
@@ -143,11 +143,11 @@ const WrapFormItem = {
     return (
       <FormItem>
         {getFieldDecorator(name, options)(
-          <Input {...{ props: { ...customprops, ...otherProps } }} />
+          <Input {...{ props: { ...customprops, ...otherProps } }} />,
         )}
       </FormItem>
     );
-  }
+  },
 };
 
 const LoginItem = {};
@@ -163,7 +163,7 @@ Object.keys(ItemMap).forEach(key => {
       getCaptchaButtonText: String,
       getCaptchaSecondText: String,
       onGetCaptcha: Function,
-      countDown: Number
+      countDown: Number,
     },
     render() {
       const props = { props: { ...this.$props } };
@@ -181,7 +181,7 @@ Object.keys(ItemMap).forEach(key => {
           )}
         </LoginContext.Consumer>
       );
-    }
+    },
   };
 });
 

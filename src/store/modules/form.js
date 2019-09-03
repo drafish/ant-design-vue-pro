@@ -6,34 +6,34 @@ const state = {
     payAccount: "123456",
     receiverAccount: {
       type: "alipay",
-      number: ""
-    }
-  }
+      number: "",
+    },
+  },
 };
 
 const actions = {
   async submitStepForm({ commit }, { payload }) {
     await request("/api/forms", {
       method: "POST",
-      data: payload
+      data: payload,
     });
     commit("saveStepFormData", { payload });
     router.push("/form/step-form/result");
-  }
+  },
 };
 
 const mutations = {
   saveStepFormData(state, { payload }) {
     state.step = {
       ...state.step,
-      ...payload
+      ...payload,
     };
-  }
+  },
 };
 
 export default {
   namespaced: true,
   state,
   actions,
-  mutations
+  mutations,
 };

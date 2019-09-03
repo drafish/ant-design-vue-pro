@@ -6,7 +6,7 @@ const TriggerException = {
   name: "TriggerException",
   data() {
     return {
-      isloading: false
+      isloading: false,
     };
   },
 
@@ -16,7 +16,7 @@ const TriggerException = {
       this.isloading = true;
 
       this.query(code);
-    }
+    },
   },
 
   render() {
@@ -39,7 +39,7 @@ const TriggerException = {
         </Spin>
       </Card>
     );
-  }
+  },
 };
 
 export default TriggerException;

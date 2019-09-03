@@ -18,11 +18,11 @@ export default {
     active: Boolean,
     destroyInactiveTabPane: Boolean,
     rootPrefixCls: String,
-    tab: String
+    tab: String,
   },
   data() {
     return {
-      uniqueId: generateId("login-tab-")
+      uniqueId: generateId("login-tab-"),
     };
   },
   mounted() {
@@ -38,6 +38,6 @@ export default {
         }}
       </LoginContext.Consumer>
     );
-  }
+  },
 };
 </script>

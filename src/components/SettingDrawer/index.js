@@ -8,7 +8,7 @@ import {
   Icon,
   Button,
   Alert,
-  Tooltip
+  Tooltip,
 } from "ant-design-vue";
 import { cloneElement } from "ant-design-vue/es/_util/vnode";
 import { mapState, mapMutations } from "vuex";
@@ -28,28 +28,28 @@ const Body = {
     return (
       <div
         style={{
-          marginBottom: 24
+          marginBottom: 24,
         }}
       >
         <h3 class={styles.title}>{title}</h3>
         {children}
       </div>
     );
-  }
+  },
 };
 
 const SettingDrawer = {
   name: "SettingDrawer",
   data() {
     return {
-      collapse: false
+      collapse: false,
     };
   },
 
   computed: {
     ...mapState("setting", {
-      setting: state => state
-    })
+      setting: state => state,
+    }),
   },
 
   methods: {
@@ -60,7 +60,7 @@ const SettingDrawer = {
         fixedHeader,
         layout,
         autoHideHeader,
-        fixSiderbar
+        fixSiderbar,
       } = this.setting;
       return [
         {
@@ -81,7 +81,7 @@ const SettingDrawer = {
                 {formatMessage("app.setting.content-width.fluid")}
               </Option>
             </Select>
-          )
+          ),
         },
         {
           title: formatMessage("app.setting.fixedheader"),
@@ -91,7 +91,7 @@ const SettingDrawer = {
               checked={!!fixedHeader}
               onChange={checked => this.changeSetting("fixedHeader", checked)}
             />
-          )
+          ),
         },
         {
           title: formatMessage("app.setting.hideheader"),
@@ -105,7 +105,7 @@ const SettingDrawer = {
                 this.changeSetting("autoHideHeader", checked)
               }
             />
-          )
+          ),
         },
         {
           title: formatMessage("app.setting.fixedsidebar"),
@@ -117,8 +117,8 @@ const SettingDrawer = {
               checked={!!fixSiderbar}
               onChange={checked => this.changeSetting("fixSiderbar", checked)}
             />
-          )
-        }
+          ),
+        },
       ];
     },
 
@@ -141,7 +141,7 @@ const SettingDrawer = {
 
     renderLayoutSettingItem(item) {
       const action = cloneElement(item.action, {
-        disabled: item.disabled
+        disabled: item.disabled,
       });
       return (
         <Tooltip
@@ -155,7 +155,7 @@ const SettingDrawer = {
           </List.Item>
         </Tooltip>
       );
-    }
+    },
   },
 
   render() {
@@ -174,13 +174,13 @@ const SettingDrawer = {
               type={collapse ? "close" : "setting"}
               style={{
                 color: "#fff",
-                fontSize: 20
+                fontSize: 20,
               }}
             />
-          </div>
+          </div>,
         ]}
         style={{
-          zIndex: 999
+          zIndex: 999,
         }}
       >
         <div class={styles.content}>
@@ -191,20 +191,20 @@ const SettingDrawer = {
                   key: "dark",
                   url:
                     "https://gw.alipayobjects.com/zos/rmsportal/LCkqqYNmvBEbokSDscrm.svg",
-                  title: formatMessage("app.setting.pagestyle.dark")
+                  title: formatMessage("app.setting.pagestyle.dark"),
                 },
                 {
                   key: "light",
                   url:
                     "https://gw.alipayobjects.com/zos/rmsportal/jpRkZQMyYRryryPNtyIC.svg",
-                  title: formatMessage("app.setting.pagestyle.light")
-                }
+                  title: formatMessage("app.setting.pagestyle.light"),
+                },
               ]}
               value={navTheme}
               {...{
                 props: {
-                  onChange: value => this.changeSetting("navTheme", value)
-                }
+                  onChange: value => this.changeSetting("navTheme", value),
+                },
               }}
             />
           </Body>
@@ -214,8 +214,8 @@ const SettingDrawer = {
             value={primaryColor}
             {...{
               props: {
-                onChange: color => this.changeSetting("primaryColor", color)
-              }
+                onChange: color => this.changeSetting("primaryColor", color),
+              },
             }}
           />
 
@@ -228,20 +228,20 @@ const SettingDrawer = {
                   key: "sidemenu",
                   url:
                     "https://gw.alipayobjects.com/zos/rmsportal/JopDzEhOqwOjeNTXkoje.svg",
-                  title: formatMessage("app.setting.sidemenu")
+                  title: formatMessage("app.setting.sidemenu"),
                 },
                 {
                   key: "topmenu",
                   url:
                     "https://gw.alipayobjects.com/zos/rmsportal/KDNDBbriJhLwuqMoxcAr.svg",
-                  title: formatMessage("app.setting.topmenu")
-                }
+                  title: formatMessage("app.setting.topmenu"),
+                },
               ]}
               value={layout}
               {...{
                 props: {
-                  onChange: value => this.changeSetting("layout", value)
-                }
+                  onChange: value => this.changeSetting("layout", value),
+                },
               }}
             />
           </Body>
@@ -269,8 +269,8 @@ const SettingDrawer = {
                         this.changeSetting("colorWeak", checked)
                       }
                     />
-                  )
-                }
+                  ),
+                },
               ]}
             />
           </Body>
@@ -280,7 +280,7 @@ const SettingDrawer = {
             icon="copy"
             onClick={() =>
               this.$copyText(
-                JSON.stringify(omit(setting, ["colorWeak"]), null, 2)
+                JSON.stringify(omit(setting, ["colorWeak"]), null, 2),
               ).then(function() {
                 message.success(formatMessage("app.setting.copyinfo"));
               })
@@ -307,7 +307,7 @@ const SettingDrawer = {
         </div>
       </Drawer>
     );
-  }
+  },
 };
 
 export default SettingDrawer;

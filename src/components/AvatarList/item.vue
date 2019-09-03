@@ -12,17 +12,17 @@ export default {
   props: {
     tips: {
       type: String,
-      default: ""
+      default: "",
     },
     src: {
       type: String,
-      default: ""
-    }
+      default: "",
+    },
   },
   data() {
     return {
       size: this.$parent.size,
-      excessItemsStyle: this.$parent.excessItemsStyle
+      excessItemsStyle: this.$parent.excessItemsStyle,
     };
   },
   watch: {
@@ -31,7 +31,7 @@ export default {
     },
     "$parent.excessItemsStyle"(val) {
       this.excessItemsStyle = val;
-    }
-  }
+    },
+  },
 };
 </script>

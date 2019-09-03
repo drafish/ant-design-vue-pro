@@ -28,13 +28,13 @@ import logo from "@/assets/logo.png";
 export default {
   components: {
     GlobalFooter,
-    SelectLang
+    SelectLang,
   },
   data() {
     return {
-      logo
+      logo,
     };
-  }
+  },
 };
 </script>
 

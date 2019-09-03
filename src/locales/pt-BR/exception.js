@@ -5,5 +5,5 @@ export default {
   "app.exception.description.404":
     "Desculpe, a página que você visitou não existe",
   "app.exception.description.500":
-    "Desculpe, o servidor está reportando um erro"
+    "Desculpe, o servidor está reportando um erro",
 };

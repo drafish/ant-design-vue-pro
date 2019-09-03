@@ -8,7 +8,7 @@ export default {
     className: String,
     type: String,
     title: String,
-    description: String
+    description: String,
   },
   render() {
     const { className, type } = this.$props;
@@ -29,7 +29,7 @@ export default {
       error: <Icon class={styles.error} type="close-circle" theme="filled" />,
       success: (
         <Icon class={styles.success} type="check-circle" theme="filled" />
-      )
+      ),
     };
 
     const clsString = classNames(styles.result, className);
@@ -43,6 +43,6 @@ export default {
         {actions && <div class={styles.actions}>{actions}</div>}
       </div>
     );
-  }
+  },
 };
 </script>

@@ -9,7 +9,7 @@ export default {
 
   data() {
     return {
-      component: null
+      component: null,
     };
   },
 
@@ -53,7 +53,7 @@ export default {
         return props => cloneElement(target, props);
       }
       return () => target;
-    }
+    },
   },
 
   render() {
@@ -69,11 +69,11 @@ export default {
           height: "100%",
           margin: "auto",
           paddingTop: 50,
-          textAlign: "center"
+          textAlign: "center",
         }}
       >
         <Spin size="large" />
       </div>
     );
-  }
+  },
 };

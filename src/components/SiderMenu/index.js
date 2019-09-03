@@ -15,7 +15,7 @@ const SiderMenuWrapper = {
         onClose={() => onCollapse(true)}
         style={{
           padding: 0,
-          height: "100vh"
+          height: "100vh",
         }}
       >
         <SiderMenu
@@ -27,7 +27,7 @@ const SiderMenuWrapper = {
     ) : (
       <SiderMenu {...{ props }} flatMenuKeys={flatMenuKeys} />
     );
-  }
+  },
 };
 
 export default SiderMenuWrapper;

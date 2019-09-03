@@ -18,20 +18,20 @@ const genCls = useBEM(prefixCls);
 export default {
   name: "Description",
   components: {
-    ACol: Col
+    ACol: Col,
   },
   props: {
-    term: PropTypes.string.def("")
+    term: PropTypes.string.def(""),
   },
   computed: {
     columnConfig() {
       const { column } = this.$parent.$attrs;
       return responsive[column];
-    }
+    },
   },
   methods: {
-    genCls
-  }
+    genCls,
+  },
 };
 </script>
 

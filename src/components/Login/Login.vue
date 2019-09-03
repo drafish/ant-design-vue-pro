@@ -7,22 +7,22 @@ const Login = {
   props: {
     defaultActiveKey: {
       type: String,
-      default: ""
+      default: "",
     },
     onTabChange: {
       type: Function,
-      default: () => {}
+      default: () => {},
     },
     onSubmit: {
       type: Function,
-      default: () => {}
-    }
+      default: () => {},
+    },
   },
   data() {
     return {
       type: this.$props.defaultActiveKey,
       tabs: [],
-      active: {}
+      active: {},
     };
   },
   methods: {
@@ -49,10 +49,10 @@ const Login = {
           },
           removeTab: id => {
             this.tabs = tabs.filter(currentId => currentId !== id);
-          }
+          },
         },
         form: {
-          ...form
+          ...form,
         },
         updateActive: activeItem => {
           const { type, active } = this;
@@ -61,9 +61,9 @@ const Login = {
           } else {
             active[type] = [activeItem];
           }
-        }
+        },
       };
-    }
+    },
   },
   render() {
     const { tabs, type } = this.$data;
@@ -106,7 +106,7 @@ const Login = {
         </div>
       </LoginContext.Provider>
     );
-  }
+  },
 };
 
 export default Form.create()(Login);

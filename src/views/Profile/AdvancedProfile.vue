@@ -123,7 +123,7 @@ import {
   Badge,
   Tooltip,
   Steps,
-  Icon
+  Icon,
 } from "ant-design-vue";
 const { Description } = DescriptionList;
 const { Step } = Steps;
@@ -138,14 +138,14 @@ export default {
     Card,
     Icon,
     Steps,
-    Step
+    Step,
   },
   data() {
     return {
       operationkey: "tab1",
-      stepDirection: "horizontal"
+      stepDirection: "horizontal",
     };
-  }
+  },
 };
 </script>
 

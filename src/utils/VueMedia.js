@@ -5,22 +5,22 @@ const Media = {
   props: {
     query: {
       type: [Object, String],
-      required: true
+      required: true,
     },
     visibleByDefault: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
-      matches: this.visibleByDefault
+      matches: this.visibleByDefault,
     };
   },
   methods: {
     updateMatches() {
       this.matches = this.mediaQueryList.matches;
-    }
+    },
   },
   mounted() {
     const { query, matches } = this;
@@ -47,8 +47,8 @@ const Media = {
           ? this.$emit("media-enter", this.mediaQueryList.media)
           : this.$emit("media-leave", this.mediaQueryList.media);
       }
-    }
-  }
+    },
+  },
 };
 
 if (typeof window !== "undefined" && window.Vue) {

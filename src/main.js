@@ -34,7 +34,7 @@ import {
   Alert,
   Card,
   Steps,
-  message
+  message,
 } from "ant-design-vue";
 import Authorized from "./components/Authorized";
 import Auth from "./directives/auth";
@@ -87,5 +87,5 @@ new Vue({
   i18n,
   router,
   store,
-  render: h => h(App)
+  render: h => h(App),
 }).$mount("#app");

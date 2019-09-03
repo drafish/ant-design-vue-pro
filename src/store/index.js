@@ -21,6 +21,6 @@ export default new Vuex.Store({
     rule,
     user,
     form,
-    global
-  }
+    global,
+  },
 });

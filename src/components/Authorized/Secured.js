@@ -65,7 +65,7 @@ const authorize = (authority, error) => {
     const component = CheckPermissions(
       authority,
       target,
-      classError || Exception403
+      classError || Exception403,
     );
     return checkIsInstantiation(component);
   };

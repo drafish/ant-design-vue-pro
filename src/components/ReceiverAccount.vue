@@ -16,19 +16,19 @@
 export default {
   props: {
     value: {
-      type: Object
-    }
+      type: Object,
+    },
   },
   watch: {
     value(val) {
       Object.assign(this, val);
-    }
+    },
   },
   data() {
     const { type, number } = this.value || {};
     return {
       type: type || "alipay",
-      number: number || ""
+      number: number || "",
     };
   },
   methods: {
@@ -37,8 +37,8 @@ export default {
     },
     handleNumberChange(e) {
       this.$emit("change", { ...this.value, number: e.target.value });
-    }
-  }
+    },
+  },
 };
 </script>
 

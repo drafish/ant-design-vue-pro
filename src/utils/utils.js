@@ -45,9 +45,9 @@ export function getTimeDistance(type) {
       moment(`${year}-${fixedZero(month + 1)}-01 00:00:00`),
       moment(
         moment(
-          `${nextYear}-${fixedZero(nextMonth + 1)}-01 00:00:00`
-        ).valueOf() - 1000
-      )
+          `${nextYear}-${fixedZero(nextMonth + 1)}-01 00:00:00`,
+        ).valueOf() - 1000,
+      ),
     ];
   }
 
@@ -115,7 +115,7 @@ function getRenderArr(routes) {
  */
 export function getRoutes(path, routerData) {
   let routes = Object.keys(routerData).filter(
-    routePath => routePath.indexOf(path) === 0 && routePath !== path
+    routePath => routePath.indexOf(path) === 0 && routePath !== path,
   );
   // Replace path to '' eg. path='user' /user/name => name
   routes = routes.map(item => item.replace(path, ""));
@@ -124,13 +124,13 @@ export function getRoutes(path, routerData) {
   // Conversion and stitching parameters
   const renderRoutes = renderArr.map(item => {
     const exact = !routes.some(
-      route => route !== item && getRelation(route, item) === 1
+      route => route !== item && getRelation(route, item) === 1,
     );
     return {
       exact,
       ...routerData[`${path}${item}`],
       key: `${path}${item}`,
-      path: `${path}${item}`
+      path: `${path}${item}`,
     };
   });
   return renderRoutes;
@@ -171,7 +171,7 @@ export function formatWan(val) {
             top: -2,
             fontSize: 14,
             fontStyle: "normal",
-            marginLeft: 2
+            marginLeft: 2,
           }}
         >
           万

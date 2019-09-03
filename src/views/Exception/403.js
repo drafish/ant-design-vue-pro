@@ -13,7 +13,7 @@ const Exception403 = {
         backText={formatMessage({ id: "app.exception.back" })}
       />
     );
-  }
+  },
 };
 
 export default Exception403;

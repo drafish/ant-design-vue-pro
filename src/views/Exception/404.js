@@ -13,7 +13,7 @@ const Exception404 = {
         backText={formatMessage({ id: "app.exception.back" })}
       />
     );
-  }
+  },
 };
 
 export default Exception404;

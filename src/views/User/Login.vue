@@ -21,15 +21,15 @@
           :rules="[
             {
               required: true,
-              message: $t('validation.userName.required')
-            }
+              message: $t('validation.userName.required'),
+            },
           ]"
         />
         <Password
           name="password"
           :placeholder="`${$t('app.login.password')}：ant.design`"
           :rules="[
-            { required: true, message: $t('validation.password.required') }
+            { required: true, message: $t('validation.password.required') },
           ]"
           :onPressEnter="
             e => {
@@ -50,12 +50,12 @@
           :rules="[
             {
               required: true,
-              message: $t('validation.phone-number.required')
+              message: $t('validation.phone-number.required'),
             },
             {
               pattern: /^1\d{10}$/,
-              message: $t('validation.phone-number.wrong-format')
-            }
+              message: $t('validation.phone-number.wrong-format'),
+            },
           ]"
         />
         <Captcha
@@ -68,8 +68,8 @@
           :rules="[
             {
               required: true,
-              message: $t('validation.verification-code.required')
-            }
+              message: $t('validation.verification-code.required'),
+            },
           ]"
         />
       </Tab>
@@ -108,7 +108,7 @@ export default {
   components: {
     VNodes: {
       functional: true,
-      render: (h, ctx) => ctx.props.vnodes
+      render: (h, ctx) => ctx.props.vnodes,
     },
     Login,
     Tab,
@@ -116,7 +116,7 @@ export default {
     Password,
     Mobile,
     Captcha,
-    Submit
+    Submit,
   },
   data() {
     return {
@@ -124,13 +124,13 @@ export default {
       autoLogin: true,
       submitting: false,
       count: 0,
-      tabs: []
+      tabs: [],
     };
   },
   computed: {
     ...mapState("login", {
-      status: state => state.status
-    })
+      status: state => state.status,
+    }),
   },
   methods: {
     ...mapActions("login", ["login", "getCaptcha"]),
@@ -141,7 +141,7 @@ export default {
         this.submitting = true;
         this.login({
           ...values,
-          type
+          type,
         }).then(() => {
           this.submitting = false;
         });
@@ -151,7 +151,7 @@ export default {
       this.type = type;
       this.changeLoginStatus({
         status: false,
-        currentAuthority: "guest"
+        currentAuthority: "guest",
       });
     },
     changeAutoLogin(e) {
@@ -170,10 +170,10 @@ export default {
                 .then(resolve)
                 .catch(reject);
               Modal.info({
-                title: this.$t("app.login.verification-code-warning")
+                title: this.$t("app.login.verification-code-warning"),
               });
             }
-          }
+          },
         );
       });
     },
@@ -190,8 +190,8 @@ export default {
           showIcon
         />
       );
-    }
-  }
+    },
+  },
 };
 </script>
 

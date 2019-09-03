@@ -12,7 +12,7 @@ let firstMount = true;
 const SiderMenu = {
   data() {
     return {
-      openKeys: getDefaultCollapsedSubMenus(this.$props)
+      openKeys: getDefaultCollapsedSubMenus(this.$props),
     };
   },
 
@@ -27,7 +27,7 @@ const SiderMenu = {
     "collapsed",
     "fixedHeader",
     "layout",
-    "menuData"
+    "menuData",
   ],
 
   mounted() {
@@ -44,7 +44,7 @@ const SiderMenu = {
       Object.assign(this, {
         pathname: location.pathname,
         flatMenuKeysLen: props.flatMenuKeys.length,
-        openKeys: getDefaultCollapsedSubMenus(props)
+        openKeys: getDefaultCollapsedSubMenus(props),
       });
     }
   },
@@ -64,7 +64,7 @@ const SiderMenu = {
       const moreThanOne =
         openKeys.filter(openKey => this.isMainMenu(openKey)).length > 1;
       this.openKeys = moreThanOne ? [openKeys.pop()] : [...openKeys];
-    }
+    },
   },
 
   render() {
@@ -74,14 +74,14 @@ const SiderMenu = {
       fixSiderbar,
       theme,
       isMobile,
-      onCollapse
+      onCollapse,
     } = this.$props;
     const { openKeys } = this.$data;
     const defaultProps = collapsed ? {} : { openKeys };
 
     const siderClassName = classNames(styles.sider, {
       [styles.fixSiderBar]: fixSiderbar,
-      [styles.light]: theme === "light"
+      [styles.light]: theme === "light",
     });
     return (
       <Sider
@@ -113,7 +113,7 @@ const SiderMenu = {
         />
       </Sider>
     );
-  }
+  },
 };
 
 export default SiderMenu;

@@ -16,49 +16,49 @@ export default {
   props: {
     className: String,
     count: {
-      type: Number
+      type: Number,
     },
     itemClick: {
       type: Function,
-      default: () => {}
+      default: () => {},
     },
     popupVisibleChange: {
       type: Function,
-      default: () => {}
+      default: () => {},
     },
     tabChange: {
       type: Function,
-      default: () => {}
+      default: () => {},
     },
     clear: {
       type: Function,
-      default: () => {}
+      default: () => {},
     },
     viewMore: {
       type: Function,
-      default: () => {}
+      default: () => {},
     },
     loading: {
       type: Boolean,
-      default: false
+      default: false,
     },
     clearClose: {
       type: Boolean,
-      default: false
+      default: false,
     },
     locale: {
       type: Object,
       default: {
         emptyText: "No notifications",
         clear: "Clear",
-        viewMore: "More"
-      }
+        viewMore: "More",
+      },
     },
     emptyImage: {
       type: String,
       default:
-        "https://gw.alipayobjects.com/zos/rmsportal/wAhyIChODzsoKIOBHcBk.svg"
-    }
+        "https://gw.alipayobjects.com/zos/rmsportal/wAhyIChODzsoKIOBHcBk.svg",
+    },
   },
 
   methods: {
@@ -103,7 +103,7 @@ export default {
           emptyText,
           emptyImage,
           showClear,
-          showViewMore
+          showViewMore,
         } = child.data.attrs;
         const len = list && list.length ? list.length : 0;
         const msgCount = count || count === 0 ? count : len;
@@ -142,7 +142,7 @@ export default {
       const { popupVisibleChange } = this.$props;
       this.visible = visible;
       popupVisibleChange(visible);
-    }
+    },
   },
 
   render() {
@@ -180,13 +180,13 @@ export default {
               name: "ant-ref",
               value: node => {
                 this.popover = node;
-              }
-            }
-          ]
+              },
+            },
+          ],
         }}
       >
         {trigger}
       </HeaderDropdown>
     );
-  }
+  },
 };

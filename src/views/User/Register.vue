@@ -12,14 +12,14 @@
               rules: [
                 {
                   required: true,
-                  message: $t('validation.email.required')
+                  message: $t('validation.email.required'),
                 },
                 {
                   type: 'email',
-                  message: $t('validation.email.wrong-format')
-                }
-              ]
-            }
+                  message: $t('validation.email.wrong-format'),
+                },
+              ],
+            },
           ]"
         />
       </a-form-item>
@@ -45,8 +45,8 @@
             v-decorator="[
               'password',
               {
-                rules: [{ validator: this.checkPassword }]
-              }
+                rules: [{ validator: this.checkPassword }],
+              },
             ]"
           />
         </a-popover>
@@ -62,13 +62,13 @@
               rules: [
                 {
                   required: true,
-                  message: $t('validation.confirm-password.required')
+                  message: $t('validation.confirm-password.required'),
                 },
                 {
-                  validator: this.checkConfirm
-                }
-              ]
-            }
+                  validator: this.checkConfirm,
+                },
+              ],
+            },
           ]"
         />
       </a-form-item>
@@ -93,14 +93,14 @@
                 rules: [
                   {
                     required: true,
-                    message: $t('validation.phone-number.required')
+                    message: $t('validation.phone-number.required'),
                   },
                   {
                     pattern: /^\d{11}$/,
-                    message: $t('validation.phone-number.wrong-format')
-                  }
-                ]
-              }
+                    message: $t('validation.phone-number.wrong-format'),
+                  },
+                ],
+              },
             ]"
           />
         </a-input-group>
@@ -118,10 +118,10 @@
                   rules: [
                     {
                       required: true,
-                      message: $t('validation.verification-code.required')
-                    }
-                  ]
-                }
+                      message: $t('validation.verification-code.required'),
+                    },
+                  ],
+                },
               ]"
             />
           </a-col>
@@ -162,15 +162,15 @@ import { Modal } from "ant-design-vue";
 const passwordProgressMap = {
   ok: "success",
   pass: "normal",
-  poor: "exception"
+  poor: "exception",
 };
 
 export default {
   components: {
     VNodes: {
       functional: true,
-      render: (h, ctx) => ctx.props.vnodes
-    }
+      render: (h, ctx) => ctx.props.vnodes,
+    },
   },
   data() {
     return {
@@ -180,7 +180,7 @@ export default {
       visible: false,
       help: "",
       prefix: "86",
-      submitting: false
+      submitting: false,
     };
   },
   beforeDestroy() {
@@ -197,7 +197,7 @@ export default {
           const { prefix } = this;
           this.register({
             ...values,
-            prefix
+            prefix,
           }).then(() => {
             this.submitting = false;
           });
@@ -213,7 +213,7 @@ export default {
         }
       }, 1000);
       Modal.info({
-        title: this.$t("app.login.verification-code-warning")
+        title: this.$t("app.login.verification-code-warning"),
       });
     },
     changePrefix(value) {
@@ -246,7 +246,7 @@ export default {
           <div class={this.$style.error}>
             {this.$t("validation.password.strength.short")}
           </div>
-        )
+        ),
       };
       return passwordStatusMap[this.getPasswordStatus()];
     },
@@ -295,8 +295,8 @@ export default {
       } else {
         callback();
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

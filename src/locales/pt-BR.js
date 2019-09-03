@@ -33,5 +33,5 @@ export default {
   ...settings,
   ...pwa,
   ...component,
-  ...editor
+  ...editor,
 };

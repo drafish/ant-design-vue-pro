@@ -23,7 +23,7 @@ const BaseMenu = {
     "handleOpenChange",
     // "style",
     "menuData",
-    "pathname"
+    "pathname",
   ],
 
   methods: {
@@ -69,7 +69,7 @@ const BaseMenu = {
       const { flatMenuKeys } = this.$props;
       if (flatMenuKeys.length) {
         return urlToList(pathname).filter(itemPath =>
-          getMenuMatches(flatMenuKeys, itemPath).pop()
+          getMenuMatches(flatMenuKeys, itemPath).pop(),
         );
       } else {
         return [];
@@ -167,7 +167,7 @@ const BaseMenu = {
 
     getRef(ref) {
       this.wrap = ref;
-    }
+    },
   },
 
   render() {
@@ -179,7 +179,7 @@ const BaseMenu = {
       collapsed,
       fixedHeader,
       layout,
-      pathname
+      pathname,
     } = this.$props;
 
     // if pathname can't match, use the nearest parent's key
@@ -190,12 +190,12 @@ const BaseMenu = {
     let props = {};
     if (openKeys && !collapsed) {
       props = {
-        openKeys: openKeys.length === 0 ? [...selectedKeys] : openKeys
+        openKeys: openKeys.length === 0 ? [...selectedKeys] : openKeys,
       };
     }
     const { handleOpenChange, style, menuData } = this.$props;
     const cls = classNames(className, {
-      "top-nav-menu": mode === "horizontal"
+      "top-nav-menu": mode === "horizontal",
     });
 
     return (
@@ -216,7 +216,7 @@ const BaseMenu = {
         <div ref={this.getRef} />
       </div>
     );
-  }
+  },
 };
 
 export default BaseMenu;

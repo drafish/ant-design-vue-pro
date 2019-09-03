@@ -17,7 +17,7 @@ const GlobalHeader = {
     "onNoticeVisibleChange",
     "onMenuClick",
     "onNoticeClear",
-    "theme"
+    "theme",
   ],
   created() {
     // @Debounce(600)
@@ -35,7 +35,7 @@ const GlobalHeader = {
       const { collapsed, onCollapse } = this.$props;
       onCollapse(!collapsed);
       this.triggerResizeEvent();
-    }
+    },
   },
   render() {
     const { collapsed, isMobile, logo } = this.$props;
@@ -52,7 +52,7 @@ const GlobalHeader = {
         <RightContent {...{ props: this.$props }} />
       </div>
     );
-  }
+  },
 };
 
 export default GlobalHeader;

@@ -9,50 +9,50 @@ const HeaderSearch = {
   props: {
     className: {
       type: String,
-      default: ""
+      default: "",
     },
     placeholder: {
       type: String,
-      default: ""
+      default: "",
     },
     search: {
       type: Function,
-      default: () => {}
+      default: () => {},
     },
     change: {
       type: Function,
-      default: () => {}
+      default: () => {},
     },
     pressEnter: {
       type: Function,
-      default: () => {}
+      default: () => {},
     },
     defaultActiveFirstOption: {
       type: Boolean,
-      default: false
+      default: false,
     },
     dataSource: {
       type: Array,
-      default: []
+      default: [],
     },
     defaultOpen: {
       type: Boolean,
-      default: false
+      default: false,
     },
     visibleChange: {
       type: Function,
-      default: () => {}
+      default: () => {},
     },
     open: {
       type: Boolean,
-      default: undefined
-    }
+      default: undefined,
+    },
   },
 
   data() {
     return {
       searchMode: false,
-      value: ""
+      value: "",
     };
   },
 
@@ -101,9 +101,9 @@ const HeaderSearch = {
     leaveSearchMode() {
       Object.assign(this, {
         searchMode: false,
-        value: ""
+        value: "",
       });
-    }
+    },
 
     // NOTE: 不能小于500，如果长按某键，第一次触发auto repeat的间隔是500ms，小于500会导致触发2次
     // @Bind()
@@ -124,7 +124,7 @@ const HeaderSearch = {
     const { searchMode, value } = this.$data;
     delete restProps.defaultOpen; // for rc-select not affected
     const inputClass = classNames(styles.input, {
-      [styles.show]: searchMode
+      [styles.show]: searchMode,
     });
     return (
       <span
@@ -152,12 +152,12 @@ const HeaderSearch = {
                   name: "ant-ref",
                   value: node => {
                     this.input = node;
-                  }
-                }
+                  },
+                },
               ],
               on: {
-                keydown: this.onKeyDown
-              }
+                keydown: this.onKeyDown,
+              },
             }}
             aria-label={placeholder}
             placeholder={placeholder}
@@ -167,7 +167,7 @@ const HeaderSearch = {
         </AutoComplete>
       </span>
     );
-  }
+  },
 };
 
 export default HeaderSearch;

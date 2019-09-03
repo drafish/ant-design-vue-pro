@@ -26,7 +26,7 @@ const TopNavHeader = {
     "mode",
     "collapsed",
     "fixedHeader",
-    "layout"
+    "layout",
   ],
   computed: {
     maxWidth() {
@@ -38,9 +38,9 @@ const TopNavHeader = {
             : window.innerWidth) -
           280 -
           120 -
-          40
+          40,
       };
-    }
+    },
   },
 
   render() {
@@ -66,7 +66,7 @@ const TopNavHeader = {
             </div>
             <div
               style={{
-                maxWidth
+                maxWidth,
               }}
             >
               <BaseMenu
@@ -84,7 +84,7 @@ const TopNavHeader = {
         </div>
       </div>
     );
-  }
+  },
 };
 
 export default TopNavHeader;

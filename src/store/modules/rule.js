@@ -6,9 +6,9 @@ export default {
   state: {
     data: {
       list: [],
-      pagination: {}
+      pagination: {},
     },
-    loading: false
+    loading: false,
   },
 
   actions: {
@@ -38,17 +38,17 @@ export default {
       commit("saveLoading", false);
       commit("save", response);
       if (callback) callback();
-    }
+    },
   },
 
   mutations: {
     save(state, action) {
       Object.assign(state, {
-        data: action
+        data: action,
       });
     },
     saveLoading(state, action) {
       state.loading = action;
-    }
-  }
+    },
+  },
 };

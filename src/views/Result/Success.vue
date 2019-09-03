@@ -116,7 +116,7 @@ import Result from "@/components/Result";
 
 export default {
   components: {
-    Result
-  }
+    Result,
+  },
 };
 </script>

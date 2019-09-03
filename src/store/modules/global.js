@@ -2,7 +2,7 @@ import { queryNotices } from "@/services/api";
 
 const state = {
   collapsed: false,
-  notices: []
+  notices: [],
 };
 
 const actions = {
@@ -14,9 +14,9 @@ const actions = {
       "user/changeNotifyCount",
       {
         totalCount: data.length,
-        unreadCount
+        unreadCount,
       },
-      { root: true }
+      { root: true },
     );
   },
   clearNotices({ commit, state }, payload) {
@@ -27,9 +27,9 @@ const actions = {
       "user/changeNotifyCount",
       {
         totalCount: count,
-        unreadCount
+        unreadCount,
       },
-      { root: true }
+      { root: true },
     );
   },
   changeNoticeReadState({ commit, state }, payload) {
@@ -46,35 +46,35 @@ const actions = {
       "user/changeNotifyCount",
       {
         totalCount: notices.length,
-        unreadCount: notices.filter(item => !item.read).length
+        unreadCount: notices.filter(item => !item.read).length,
       },
-      { root: true }
+      { root: true },
     );
-  }
+  },
 };
 
 const mutations = {
   changeLayoutCollapsed(state, payload) {
     Object.assign(state, {
-      collapsed: payload
+      collapsed: payload,
     });
   },
   saveNotices(state, payload) {
     console.log(payload);
     Object.assign(state, {
-      notices: payload
+      notices: payload,
     });
   },
   saveClearedNotices(state, payload) {
     Object.assign(state, {
-      notices: state.notices.filter(item => item.type !== payload)
+      notices: state.notices.filter(item => item.type !== payload),
     });
-  }
+  },
 };
 
 export default {
   namespaced: true,
   state,
   actions,
-  mutations
+  mutations,
 };

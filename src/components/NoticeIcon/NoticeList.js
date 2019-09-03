@@ -16,7 +16,7 @@ export default {
       emptyImage,
       viewMore = null,
       showClear = true,
-      showViewMore = false
+      showViewMore = false,
     } = ctx.props;
 
     if (data.length === 0) {
@@ -32,7 +32,7 @@ export default {
         <List class={styles.list}>
           {data.map((item, i) => {
             const itemCls = classNames(styles.item, {
-              [styles.read]: item.read
+              [styles.read]: item.read,
             });
             const leftIcon = item.avatar ? (
               typeof item.avatar === "string" ? (
@@ -82,5 +82,5 @@ export default {
         </div>
       </div>
     );
-  }
+  },
 };
