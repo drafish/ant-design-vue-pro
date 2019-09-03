@@ -7,6 +7,7 @@ import menu from "./modules/menu";
 import setting from "./modules/setting";
 import user from "./modules/user";
 import error from "./modules/error";
+import rule from "./modules/rule";
 
 Vue.use(Vuex);
 
@@ -17,6 +18,7 @@ export default new Vuex.Store({
     menu,
     setting,
     error,
+    rule,
     user,
     form,
     global

@@ -118,6 +118,20 @@ const router = new Router({
             }
           ]
         },
+        {
+          path: "/list",
+          icon: "table",
+          name: "list",
+          component: { render: h => h("router-view") },
+          children: [
+            {
+              path: "/list/table-list",
+              name: "searchtable",
+              component: () =>
+                import(/* webpackChunkName: "list" */ "@/views/List/TableList")
+            }
+          ]
+        },
         // Exception
         {
           path: "/exception",
