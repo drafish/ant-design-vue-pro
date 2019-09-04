@@ -8,6 +8,7 @@ import setting from "./modules/setting";
 import user from "./modules/user";
 import error from "./modules/error";
 import rule from "./modules/rule";
+import profile from "./modules/profile";
 
 Vue.use(Vuex);
 
@@ -22,5 +23,6 @@ export default new Vuex.Store({
     user,
     form,
     global,
+    profile,
   },
 });

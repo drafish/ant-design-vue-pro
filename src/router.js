@@ -196,6 +196,14 @@ const router = new Router({
                 ),
             },
             {
+              path: "/profile/basic/:id",
+              hideInMenu: true,
+              component: () =>
+                import(
+                  /* webpackChunkName: "profile" */ "@/views/Profile/BasicProfile"
+                ),
+            },
+            {
               path: "/profile/advanced",
               name: "advanced",
               authority: ["admin"],
