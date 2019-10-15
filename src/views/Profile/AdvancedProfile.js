@@ -1,7 +1,12 @@
 import debounce from "lodash/debounce";
 import bind from "lodash/bind";
 import {
+  Button,
+  Menu,
+  Dropdown,
   Icon,
+  Row,
+  Col,
   Steps,
   Card,
   Popover,
@@ -12,6 +17,7 @@ import {
 } from "ant-design-vue";
 import classNames from "classnames";
 import DescriptionList from "@/components/DescriptionList";
+import PageHeaderWrapper from "@/components/PageHeaderWrapper";
 import styles from "./AdvancedProfile.less";
 import { mapState, mapActions } from "vuex";
 import PropTypes from "ant-design-vue/es/_util/vue-types";
@@ -20,6 +26,7 @@ Badge.props.text = PropTypes.oneOfType([PropTypes.string, PropTypes.object]);
 
 const { Step } = Steps;
 const { Description } = DescriptionList;
+const ButtonGroup = Button.Group;
 
 const getWindowWidth = () =>
   window.innerWidth || document.documentElement.clientWidth;
@@ -78,6 +85,25 @@ const AdvancedProfile = {
   },
 
   render() {
+    const menu = (
+      <Menu>
+        <Menu.Item key="1">选项一</Menu.Item>
+        <Menu.Item key="2">选项二</Menu.Item>
+        <Menu.Item key="3">选项三</Menu.Item>
+      </Menu>
+    );
+
+    const tabList = [
+      {
+        key: "detail",
+        tab: "详情",
+      },
+      {
+        key: "rule",
+        tab: "规则",
+      },
+    ];
+
     const desc1 = (
       <div class={classNames(styles.textSecondary, styles.stepDescription)}>
         曲丽丽
@@ -211,7 +237,52 @@ const AdvancedProfile = {
     };
 
     return (
-      <div>
+      <PageHeaderWrapper
+        title="单号：234231029431"
+        logo={
+          <img
+            alt=""
+            src="https://gw.alipayobjects.com/zos/rmsportal/nxkuOJlFJuAUhzlMTCEe.png"
+          />
+        }
+        tabList={tabList}
+      >
+        <template slot="extra">
+          <ButtonGroup>
+            <Button>操作</Button>
+            <Button>操作</Button>
+            <Dropdown overlay={menu} placement="bottomRight">
+              <Button>
+                <Icon type="ellipsis" />
+              </Button>
+            </Dropdown>
+          </ButtonGroup>
+          <Button type="primary">主操作</Button>
+        </template>
+        <template slot="content">
+          <DescriptionList className={styles.headerList} size="small" col="2">
+            <Description term="创建人">曲丽丽</Description>
+            <Description term="订购产品">XX 服务</Description>
+            <Description term="创建时间">2017-07-07</Description>
+            <Description term="关联单据">
+              <a href="">12421</a>
+            </Description>
+            <Description term="生效日期">2017-07-07 ~ 2017-08-08</Description>
+            <Description term="备注">请于两个工作日内确认</Description>
+          </DescriptionList>
+        </template>
+        <template slot="extraContent">
+          <Row>
+            <Col xs={24} sm={12}>
+              <div className={styles.textSecondary}>状态</div>
+              <div className={styles.heading}>待审批</div>
+            </Col>
+            <Col xs={24} sm={12}>
+              <div className={styles.textSecondary}>订单金额</div>
+              <div className={styles.heading}>¥ 568.08</div>
+            </Col>
+          </Row>
+        </template>
         <Card
           title="流程进度"
           style={{ marginBottom: "24px" }}
@@ -322,7 +393,7 @@ const AdvancedProfile = {
         >
           {contentList[operationkey]}
         </Card>
-      </div>
+      </PageHeaderWrapper>
     );
   },
 };

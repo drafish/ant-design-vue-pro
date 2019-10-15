@@ -9,10 +9,11 @@ const SelectLang = {
   props: {
     className: String,
   },
-
+  inject: ["changeGlobalLang"],
   methods: {
     changeLang({ key }) {
       setLocale(key);
+      this.changeGlobalLang(key);
     },
   },
 

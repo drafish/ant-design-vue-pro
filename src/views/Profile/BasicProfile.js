@@ -1,5 +1,6 @@
 import { Card, Badge, Table, Divider } from "ant-design-vue";
 import DescriptionList from "@/components/DescriptionList";
+import PageHeaderWrapper from "@/components/PageHeaderWrapper";
 import styles from "./BasicProfile.less";
 import { mapState, mapActions } from "vuex";
 
@@ -152,48 +153,50 @@ const BasicProfile = {
       },
     ];
     return (
-      <Card bordered={false}>
-        <DescriptionList
-          size="large"
-          title="退款申请"
-          style={{ marginBottom: "32px" }}
-        >
-          <Description term="取货单号">{application.id}</Description>
-          <Description term="状态">{application.status}</Description>
-          <Description term="销售单号">{application.orderNo}</Description>
-          <Description term="子订单">{application.childOrderNo}</Description>
-        </DescriptionList>
-        <Divider style={{ marginBottom: "32px" }} />
-        <DescriptionList
-          size="large"
-          title="用户信息"
-          style={{ marginBottom: "32px" }}
-        >
-          <Description term="用户姓名">{userInfo.name}</Description>
-          <Description term="联系电话">{userInfo.tel}</Description>
-          <Description term="常用快递">{userInfo.delivery}</Description>
-          <Description term="取货地址">{userInfo.addr}</Description>
-          <Description term="备注">{userInfo.remark}</Description>
-        </DescriptionList>
-        <Divider style={{ marginBottom: "32px" }} />
-        <div class={styles.title}>退货商品</div>
-        <Table
-          style={{ marginBottom: "24px" }}
-          pagination={false}
-          loading={loading}
-          dataSource={goodsData}
-          columns={goodsColumns}
-          rowKey="id"
-        />
-        <div class={styles.title}>退货进度</div>
-        <Table
-          style={{ marginBottom: "16px" }}
-          pagination={false}
-          loading={loading}
-          dataSource={basicProgress}
-          columns={progressColumns}
-        />
-      </Card>
+      <PageHeaderWrapper title="基础详情页" loading={loading}>
+        <Card bordered={false}>
+          <DescriptionList
+            size="large"
+            title="退款申请"
+            style={{ marginBottom: "32px" }}
+          >
+            <Description term="取货单号">{application.id}</Description>
+            <Description term="状态">{application.status}</Description>
+            <Description term="销售单号">{application.orderNo}</Description>
+            <Description term="子订单">{application.childOrderNo}</Description>
+          </DescriptionList>
+          <Divider style={{ marginBottom: "32px" }} />
+          <DescriptionList
+            size="large"
+            title="用户信息"
+            style={{ marginBottom: "32px" }}
+          >
+            <Description term="用户姓名">{userInfo.name}</Description>
+            <Description term="联系电话">{userInfo.tel}</Description>
+            <Description term="常用快递">{userInfo.delivery}</Description>
+            <Description term="取货地址">{userInfo.addr}</Description>
+            <Description term="备注">{userInfo.remark}</Description>
+          </DescriptionList>
+          <Divider style={{ marginBottom: "32px" }} />
+          <div class={styles.title}>退货商品</div>
+          <Table
+            style={{ marginBottom: "24px" }}
+            pagination={false}
+            loading={loading}
+            dataSource={goodsData}
+            columns={goodsColumns}
+            rowKey="id"
+          />
+          <div class={styles.title}>退货进度</div>
+          <Table
+            style={{ marginBottom: "16px" }}
+            pagination={false}
+            loading={loading}
+            dataSource={basicProgress}
+            columns={progressColumns}
+          />
+        </Card>
+      </PageHeaderWrapper>
     );
   },
 };

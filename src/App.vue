@@ -1,32 +1,50 @@
 <template>
   <div id="root">
-    <!-- <a-locale-provider :locale="locale"> -->
-    <router-view />
-    <!-- </a-locale-provider> -->
+    <a-locale-provider :locale="locale">
+      <router-view />
+    </a-locale-provider>
   </div>
 </template>
 <script>
-// import zhCN from "ant-design-vue/lib/locale-provider/zh_CN";
-// import enUS from "ant-design-vue/lib/locale-provider/en_US";
+// import ConfigProvider from "../../ant-design-vue/components/config-provider";
+import { LocaleProvider } from "ant-design-vue";
 // import moment from "moment";
 // import "moment/locale/zh-cn";
+import { getLocale, setLocaleMessage } from "@/locales";
+
 export default {
   data() {
     return {
-      // locale: zhCN
+      locale: {},
+      lang: "",
     };
   },
-  // watch: {
-  //   "$route.query.locale": function(val) {
-  //     this.locale = val === "enUS" ? enUS : zhCN;
-  //     moment.locale(val === "enUS" ? "en" : "zh-cn");
-  //   }
-  // }
+  components: {
+    ALocaleProvider: LocaleProvider,
+  },
+  provide() {
+    return {
+      changeGlobalLang: this.changeGlobalLang,
+    };
+  },
+  created() {
+    const lang = getLocale();
+    this.changeGlobalLang(lang);
+    setLocaleMessage(lang);
+  },
+  methods: {
+    async changeGlobalLang(lang) {
+      if (lang !== this.lang) {
+        this.lang = lang;
+        this.locale = (await import(
+          /* webpackChunkName: "locale" */ `ant-design-vue/lib/locale-provider/${lang
+            .split("-")
+            .join("_")}`
+        )).default;
+      }
+    },
+  },
 };
 </script>
 
-<style lang="less" src="./global.less">
-// #app {
-//   height: 100%;
-// }
-</style>
+<style lang="less" src="./global.less"></style>

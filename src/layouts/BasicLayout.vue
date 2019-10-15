@@ -135,7 +135,7 @@ export default {
     ...mapMutations("setting", ["getSetting"]),
     ...mapMutations("global", ["changeLayoutCollapsed"]),
     getContext() {
-      const { location, breadcrumbNameMap } = this;
+      const { breadcrumbNameMap } = this;
       return {
         location,
         breadcrumbNameMap,
